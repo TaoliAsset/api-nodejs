@@ -6,20 +6,22 @@ import BasicLong from "../BasicLong";
 import BasicInt from "../BasicInt";
 import BasicBool from "../BasicBool";
 import Daemon from "./Daemon";
-import events from "events";
+import { EventEmitter } from "events";
 
 class Client {
-  constructor(port, host) {
-    this.lport = port;
-    this.lhost = host;
-    let channel = new events.EventEmitter();
-    // channel.subscriptions = {}
-    this.channel = channel;
-    const daemon = new Daemon(port, channel);
+  channel = new EventEmitter();
+  constructor(public lport: number, public lhost: string) {
+    const daemon = new Daemon(lport, this.channel);
     daemon.run();
   }
 
-  async subscribe(host, port, tableName, actionName, options) {
+  async subscribe(
+    host: string,
+    port: number,
+    tableName: string,
+    actionName: string,
+    options
+  ) {
     let {
       offset = -1,
       handler = null,
@@ -68,7 +70,7 @@ class Client {
     });
   }
 
-  async unsubscribe(host, port, tableName, actionName) {
+  async unsubscribe(host: string, port: number, tableName: string, actionName) {
     let conn = new DBconnection();
     await conn.connect(host, port);
     let lport = new BasicInt(this.lport);

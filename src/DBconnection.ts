@@ -5,21 +5,33 @@ const infolevel = constants.infoLevel;
 import BasicScalar from "./BasicScalar";
 import BasicVector from "./BasicVector";
 import Parser from "./Parser";
-const { PromiseSocket, TimeoutError } = require("promise-socket");
+import { PromiseSocket, TimeoutError } from "promise-socket";
 import BufferRe from "./BufferRe";
 
 class DBconnection {
-  constructor() {
-    this.socket = new PromiseSocket();
-    this.parser = new Parser();
-    this.buffer = new BufferRe(4194304); //init buffer, 4 MB
-  }
+  socket = new PromiseSocket();
+  parser = new Parser();
+  buffer = new BufferRe(4194304); //init buffer, 4 MB
 
-  async connect(host, port, username, password) {
+  host: string;
+  port: number;
+  username: string;
+  password: string;
+
+  sessionID = "";
+  response: string | Buffer;
+  constructor() {}
+
+  async connect(
+    host: string,
+    port: number,
+    username: string = "",
+    password: string = ""
+  ) {
     this.host = host;
     this.port = port;
-    this.username = username || "";
-    this.password = password || "";
+    this.username = username;
+    this.password = password;
     this.sessionID = "";
     this.response = ""; //store the returned message using buffer
     if (this.username === "" || this.password === "")
@@ -30,7 +42,7 @@ class DBconnection {
         port: this.port,
         username: this.username,
         password: this.password,
-      });
+      } as any);
     await this.socket.write("API 0 8\nconnect\n");
     // console.log('send first msg');
     this.response = await this.socket.read();
@@ -48,7 +60,7 @@ class DBconnection {
         port: this.port,
         username: this.username,
         password: this.password,
-      });
+      } as any);
   }
 
   async close() {
