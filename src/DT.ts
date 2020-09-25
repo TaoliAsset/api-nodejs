@@ -39,168 +39,168 @@ function arrayLize(value, ftypect) {
 }
 
 namespace DtCt {
-  function Bool(value) {
+  export function Bool(value) {
     return arrayLize(value, function (v) {
       return new BasicBool(v);
     });
   }
 
-  function Char(value) {
+  export function Char(value) {
     return arrayLize(value, function (v) {
       return new BasicChar(v);
     });
   }
 
-  function Byte(value) {
+  export function Byte(value) {
     return arrayLize(value, function (v) {
       return new BasicByte(v);
     });
   }
 
-  function Short(value) {
+  export function Short(value) {
     return arrayLize(value, function (v) {
       return new BasicShort(v);
     });
   }
 
-  function Int(value) {
+  export function Int(value) {
     return arrayLize(value, function (v) {
       return new BasicInt(v);
     });
   }
 
-  function Long(value) {
+  export function Long(value) {
     return arrayLize(value, function (v) {
       return new BasicLong(v);
     });
   }
 
-  function Date(value) {
+  export function Date(value) {
     return arrayLize(value, function (v) {
       return new BasicDate(v);
     });
   }
 
-  function Month(value) {
+  export function Month(value) {
     return arrayLize(value, function (v) {
       return new BasicMonth(v);
     });
   }
 
-  function Time(value) {
+  export function Time(value) {
     return arrayLize(value, function (v) {
       return new BasicTime(v);
     });
   }
 
-  function Minute(value) {
+  export function Minute(value) {
     return arrayLize(value, function (v) {
       return new BasicMinute(v);
     });
   }
 
-  function Second(value) {
+  export function Second(value) {
     return arrayLize(value, function (v) {
       return new BasicSecond(v);
     });
   }
 
-  function DateTime(value) {
+  export function DateTime(value) {
     return arrayLize(value, function (v) {
       return new BasicDateTime(v);
     });
   }
 
-  function TimeStamp(value) {
+  export function TimeStamp(value) {
     return arrayLize(value, function (v) {
       return new BasicTimeStamp(v);
     });
   }
 
-  function NanoTime(value) {
+  export function NanoTime(value) {
     return arrayLize(value, function (v) {
       return new BasicNanoTime(v);
     });
   }
 
-  function NanoTimeStamp(value) {
+  export function NanoTimeStamp(value) {
     return arrayLize(value, function (v) {
       return new BasicNanoTimeStamp(v);
     });
   }
 
-  function Float(value) {
+  export function Float(value) {
     return arrayLize(value, function (v) {
       return new BasicFloat(v);
     });
   }
 
-  function Double(value) {
+  export function Double(value) {
     return arrayLize(value, function (v) {
       return new BasicDouble(v);
     });
   }
 
-  function Vector(value) {
+  export function Vector(value) {
     return new BasicVector(value);
   }
 
-  function Pair(value) {
+  export function Pair(value) {
     return arrayLize(value, function (v) {
       return new BasicPair(v);
     });
   }
 
-  function Matrix(value) {
+  export function Matrix(value) {
     return arrayLize(value, function (v) {
       return new BasicMat(v);
     });
   }
 
-  function Set(value) {
+  export function Set(value) {
     return arrayLize(value, function (v) {
       return new BasicSet(v);
     });
   }
 
-  function Dict(value) {
+  export function Dict(value) {
     return arrayLize(value, function (v) {
       return new BasicDict(v);
     });
   }
 
-  function Table(value) {
+  export function Table(value) {
     return arrayLize(value, function (v) {
       return new BasicTable(v);
     });
   }
 
-  function UUID(value) {
+  export function UUID(value) {
     return arrayLize(value, function (v) {
       return new BasicUuid(v);
     });
   }
 
-  function IpAddr(value) {
+  export function IpAddr(value) {
     return arrayLize(value, function (v) {
       return new BasicIpAddr(v);
     });
   }
 
-  function Int128(value) {
+  export function Int128(value) {
     return arrayLize(value, function (v) {
       return new BasicInt128(v);
     });
   }
 
-  function Null(value) {
+  export function Null(value) {
     // value is data type
     return arrayLize(value, function (v) {
       return new BasicNull(v);
     });
   }
 
-  function Symbol(value) {
+  export function Symbol(value) {
     return arrayLize(value, function (v) {
       return new BasicSymbol(v);
     });

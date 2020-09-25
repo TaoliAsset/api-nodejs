@@ -1,5 +1,5 @@
 namespace Util {
-  function dtypelen(dtype) {
+  export function dtypelen(dtype) {
     switch (dtype) {
       case 0:
         return 1; //VOID
@@ -48,7 +48,7 @@ namespace Util {
     }
   }
 
-  function dtypeByName(name) {
+  export function dtypeByName(name) {
     switch (name) {
       case "void":
         return 0;
@@ -119,7 +119,7 @@ namespace Util {
     }
   }
 
-  function nameBydtype(dtype) {
+  export function nameBydtype(dtype) {
     switch (dtype) {
       case 0:
         return "void"; //VOID
@@ -170,7 +170,7 @@ namespace Util {
     }
   }
 
-  function dformByName(name) {
+  export function dformByName(name) {
     switch (name) {
       case "scalar":
         return 0;
@@ -197,20 +197,20 @@ namespace Util {
     }
   }
 
-  function str2Buf(str, isSmall = 1) {
+  export function str2Buf(str, isSmall = 1) {
     let buf = Buffer.alloc(str.length + 1);
     if (isSmall !== 1) str = str.split("").reverse().join("");
     buf.write(str);
     return buf;
   }
 
-  function numberLize(...args) {
+  export function numberLize(...args) {
     let arr = new Array(args.length);
     for (let i = 0; i < args.length; i++) arr[i] = Number(args[i]);
     return arr;
   }
 
-  function ns2i(str) {
+  export function ns2i(str) {
     const ns0 = "000000000";
     let i;
     for (i = 0; i < str.length && str[i] === "0"; i++);
@@ -218,7 +218,7 @@ namespace Util {
     return str.substring(i);
   }
 
-  function timeFromStr(timestr) {
+  export function timeFromStr(timestr) {
     const pdate = /^(\d{4})\-(0\d|1[0-2]|\d)\-?([0-2]\d|3[01]|\d)?$/;
     const ptimes = /^([01]\d|2[0-3]|\d)\:([0-5]\d|\d)\:?([0-5]\d|\d)?$/;
     const ptimens = /^([01]\d|2[0-3]|\d)\:([0-5]\d|\d)\:([0-5]\d|\d)\.(\d{1,9})$/;
@@ -285,7 +285,7 @@ namespace Util {
     }
   }
 
-  function formatBytes(buf) {
+  export function formatBytes(buf) {
     let hexArray = new Array(buf.length);
     for (let i = 0; i < buf.length; i++) {
       let hc = buf[i].toString(16);
@@ -311,14 +311,14 @@ namespace Util {
     );
   }
 
-  function scalar2Buf(value, isSmall = true) {
+  export function scalar2Buf(value, isSmall = true) {
     let hdrBuf = value.hdrbytes();
     let buf = value.small(isSmall).tobytes();
     buf = Buffer.concat([hdrBuf, buf]);
     return buf;
   }
 
-  function allocBuf(slen, dlen, blockSize = 1024) {
+  export function allocBuf(slen, dlen, blockSize = 1024) {
     let buf = Buffer.allocUnsafe(
       slen + Math.ceil((dlen - slen) / blockSize) * blockSize
     );
