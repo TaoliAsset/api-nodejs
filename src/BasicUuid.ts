@@ -1,4 +1,4 @@
-const BasicInt128 = require("./BasicInt128");
+import BasicInt128 from "./BasicInt128";
 
 class BasicUuid extends BasicInt128 {
   constructor(value) {

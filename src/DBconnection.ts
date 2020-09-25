@@ -1,11 +1,12 @@
-const tUtil = require("./typeUtil");
-const infolevel = require("./constants").infoLevel;
+import tUtil from "./typeUtil";
+import constants from "./constants";
+const infolevel = constants.infoLevel;
 
-const BasicScalar = require("./BasicScalar");
-const BasicVector = require("./BasicVector");
-const Parser = require("./Parser");
+import BasicScalar from "./BasicScalar";
+import BasicVector from "./BasicVector";
+import Parser from "./Parser";
 const { PromiseSocket, TimeoutError } = require("promise-socket");
-const BufferRe = require("./BufferRe");
+import BufferRe from "./BufferRe";
 
 class DBconnection {
   constructor() {

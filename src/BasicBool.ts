@@ -1,4 +1,4 @@
-const BasicByte = require("./BasicByte");
+import BasicByte from "./BasicByte";
 
 class BasicBool extends BasicByte {
   constructor(value) {

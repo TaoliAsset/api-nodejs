@@ -1,9 +1,9 @@
-const Util = require("./util");
-const constants = require("./constants");
+import Util from "./util";
+import constants from "./constants";
 
-const BasicDate = require("./BasicDate");
-const BasicTime = require("./BasicTime");
-const TimeObj = require("./TimeObj");
+import BasicDate from "./BasicDate";
+import BasicTime from "./BasicTime";
+import TimeObj from "./TimeObj";
 let basicDate = new BasicDate();
 let basicTime = new BasicTime();
 

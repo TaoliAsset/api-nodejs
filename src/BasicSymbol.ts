@@ -1,4 +1,4 @@
-const BasicString = require("./BasicString");
+import BasicString from "./BasicString";
 
 class BasicSymbol extends BasicString {
   constructor(value) {

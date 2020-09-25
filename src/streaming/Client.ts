@@ -1,12 +1,12 @@
-const infolevel = require("../constants").infoLevel;
-
-const DBconnection = require("../DBconnection");
-const BasicNull = require("../BasicNull");
-const BasicLong = require("../BasicLong");
-const BasicInt = require("../BasicInt");
-const BasicBool = require("../BasicBool");
-const Daemon = require("./Daemon");
-const events = require("events");
+import constants from "../constants";
+const infolevel = constants.infoLevel;
+import DBconnection from "../DBconnection";
+import BasicNull from "../BasicNull";
+import BasicLong from "../BasicLong";
+import BasicInt from "../BasicInt";
+import BasicBool from "../BasicBool";
+import Daemon from "./Daemon";
+import events from "events";
 
 class Client {
   constructor(port, host) {

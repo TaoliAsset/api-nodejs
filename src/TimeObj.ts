@@ -1,4 +1,4 @@
-const BasicScalar = require("./BasicScalar");
+import BasicScalar from "./BasicScalar";
 
 class TimeObj extends BasicScalar {
   constructor() {

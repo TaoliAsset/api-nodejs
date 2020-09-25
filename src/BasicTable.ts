@@ -1,6 +1,6 @@
-const BasicVector = require("./BasicVector");
-const BasicInt = require("./BasicInt");
-const Util = require("./util");
+import BasicVector from "./BasicVector";
+import BasicInt from "./BasicInt";
+import Util from "./util";
 
 class BasicTable extends BasicVector {
   constructor(value) {

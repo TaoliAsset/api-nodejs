@@ -1,5 +1,5 @@
-const TableCheck = require("./TableCheck");
-const VectorCheck = require("./VectorCheck");
+import TableCheck from "./TableCheck";
+import VectorCheck from "./VectorCheck";
 
 class StreamReader {
   constructor() {

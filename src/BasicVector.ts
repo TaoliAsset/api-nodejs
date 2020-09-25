@@ -1,11 +1,11 @@
-// const Util = require("./util");
-const tUtil = require("./typeUtil");
-const constants = require("./constants");
+// import Util from "./util";
+import tUtil from "./typeUtil";
+import constants from "./constants";
 
-const BasicScalar = require("./BasicScalar");
-// const BasicNull = require("./BasicNull");
-const BasicInt = require("./BasicInt");
-// const BasicString = require("./BasicString");
+import BasicScalar from "./BasicScalar";
+// import BasicNull from "./BasicNull";
+import BasicInt from "./BasicInt";
+// import BasicString from "./BasicString";
 
 class BasicVector {
   constructor(value) {

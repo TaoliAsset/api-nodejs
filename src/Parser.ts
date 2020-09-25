@@ -1,18 +1,18 @@
-const Util = require("./util");
+import Util from "./util";
 
-const BasicDate = require("./BasicDate");
-const BasicMonth = require("./BasicMonth");
-const BasicTime = require("./BasicTime");
-const BasicMinute = require("./BasicMinute");
-const BasicSecond = require("./BasicSecond");
-const BasicDateTime = require("./BasicDateTime");
-const BasicTimeStamp = require("./BasicTimeStamp");
-const BasicNanoTime = require("./BasicNanoTime");
-const BasicNanoTimeStamp = require("./BasicNanoTimeStamp");
-const BasicUuid = require("./BasicUuid");
-const BasicIpAddr = require("./BasicIpAddr");
-const BasicInt128 = require("./BasicInt128");
-const BasicNull = require("./BasicNull");
+import BasicDate from "./BasicDate";
+import BasicMonth from "./BasicMonth";
+import BasicTime from "./BasicTime";
+import BasicMinute from "./BasicMinute";
+import BasicSecond from "./BasicSecond";
+import BasicDateTime from "./BasicDateTime";
+import BasicTimeStamp from "./BasicTimeStamp";
+import BasicNanoTime from "./BasicNanoTime";
+import BasicNanoTimeStamp from "./BasicNanoTimeStamp";
+import BasicUuid from "./BasicUuid";
+import BasicIpAddr from "./BasicIpAddr";
+import BasicInt128 from "./BasicInt128";
+import BasicNull from "./BasicNull";
 
 class Parser {
   constructor(isSmall = true) {

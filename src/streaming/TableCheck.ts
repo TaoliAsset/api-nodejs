@@ -1,4 +1,4 @@
-const VectorCheck = require("./VectorCheck");
+import VectorCheck from "./VectorCheck";
 
 class TableCheck {
   constructor() {

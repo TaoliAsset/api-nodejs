@@ -1,7 +1,7 @@
-const Util = require("./util");
-const tUtil = require("./typeUtil");
-const BasicVector = require("./BasicVector");
-const BasicInt = require("./BasicInt");
+import Util from "./util";
+import tUtil from "./typeUtil";
+import BasicVector from "./BasicVector";
+import BasicInt from "./BasicInt";
 
 class BasicMat extends BasicVector {
   constructor(value) {

@@ -1,10 +1,10 @@
-const BasicScalar = require("./BasicScalar");
-const BasicBool = require("./BasicBool");
-const BasicDouble = require("./BasicDouble");
-const BasicString = require("./BasicString");
-const BasicLong = require("./BasicLong");
-const BasicInt = require("./BasicInt");
-const BasicNull = require("./BasicNull");
+import BasicScalar from "./BasicScalar";
+import BasicBool from "./BasicBool";
+import BasicDouble from "./BasicDouble";
+import BasicString from "./BasicString";
+import BasicLong from "./BasicLong";
+import BasicInt from "./BasicInt";
+import BasicNull from "./BasicNull";
 
 let tUtil = new Object();
 

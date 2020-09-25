@@ -1,4 +1,4 @@
-const Util = require("./util");
+import Util from "./util";
 
 class BufferRe {
   constructor(initSize, blockSize = 16384) {

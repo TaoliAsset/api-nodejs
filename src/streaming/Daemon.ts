@@ -1,8 +1,8 @@
-const net = require("net");
+import net from "net";
 // const Util = require('../util');
 // const infolevel = require('../constants').infoLevel;
-const Parser = require("../Parser");
-const StreamReader = require("./StreamReader");
+import Parser from "../Parser";
+import StreamReader from "./StreamReader";
 
 class Daemon {
   constructor(port, channel) {

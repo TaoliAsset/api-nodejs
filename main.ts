@@ -1,4 +1,4 @@
-const Client = require("./src/streaming/Client");
+import Client from "./src/streaming/Client";
 
 function assertEquals(expected, value, name) {
   if (typeof name === "undefined") name = "";

@@ -1,4 +1,4 @@
-const BasicVector = require("./BasicVector");
+import BasicVector from "./BasicVector";
 
 class BasicPair extends BasicVector {
   constructor(value) {

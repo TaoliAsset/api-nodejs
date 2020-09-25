@@ -1,5 +1,5 @@
-const DT = require("./src/DT");
-const Client = require("./src/streaming/Client");
+import DT from "./src/DT";
+import Client from "./src/streaming/Client";
 
 function handleMsg(data) {
   console.log("I'm handle 1", data);

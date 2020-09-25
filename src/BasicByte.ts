@@ -1,5 +1,5 @@
-const BasicScalar = require("./BasicScalar");
-const constants = require("./constants");
+import BasicScalar from "./BasicScalar";
+import constants from "./constants";
 
 class BasicByte extends BasicScalar {
   constructor(value) {

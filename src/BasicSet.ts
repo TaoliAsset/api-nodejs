@@ -1,6 +1,6 @@
-const BasicVector = require("./BasicVector");
-// const Util = require("./util");
-// const BasicNull = require("./BasicNull");
+import BasicVector from "./BasicVector";
+// import Util from "./util";
+// import BasicNull from "./BasicNull";
 
 class BasicSet extends BasicVector {
   constructor(value) {
