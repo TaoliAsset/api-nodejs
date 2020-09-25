@@ -1,11 +1,8 @@
 import BasicScalar from "./BasicScalar";
 
 class TimeObj extends BasicScalar {
-  constructor() {
-    super();
-    this.value = null;
-    this.timeObj = null;
-  }
+  value = null;
+  timeObj = null;
 
   get() {
     return null;
