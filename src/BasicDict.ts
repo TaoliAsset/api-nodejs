@@ -24,4 +24,4 @@ class BasicDict extends BasicVector {
     return Buffer.from(byteArray);
   }
 }
-module.exports = BasicDict;
+export default BasicDict;

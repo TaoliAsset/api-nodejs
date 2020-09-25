@@ -207,4 +207,4 @@ DtCt.Symbol = function (value) {
   });
 };
 
-module.exports = DtCt;
+export default DtCt;

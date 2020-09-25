@@ -7,4 +7,4 @@ class BasicSymbol extends BasicString {
   }
 }
 
-module.exports = BasicSymbol;
+export default BasicSymbol;

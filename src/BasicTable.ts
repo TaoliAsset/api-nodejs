@@ -55,4 +55,4 @@ class BasicTable extends BasicVector {
     return Buffer.from(byteArray);
   }
 }
-module.exports = BasicTable;
+export default BasicTable;

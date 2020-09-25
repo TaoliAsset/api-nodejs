@@ -144,4 +144,4 @@ class VectorCheck {
     }
   }
 }
-module.exports = VectorCheck;
+export default VectorCheck;

@@ -90,4 +90,4 @@ class TableCheck {
     }
   }
 }
-module.exports = TableCheck;
+export default TableCheck;

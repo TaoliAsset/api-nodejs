@@ -89,4 +89,4 @@ class BasicNanoTime extends TimeObj {
   //     return this.timeObj.toString();
   // }
 }
-module.exports = BasicNanoTime;
+export default BasicNanoTime;

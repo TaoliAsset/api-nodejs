@@ -14,4 +14,4 @@ class BasicDouble extends BasicScalar {
     return buf;
   }
 }
-module.exports = BasicDouble;
+export default BasicDouble;

@@ -24,4 +24,4 @@ class BasicUuid extends BasicInt128 {
     return this.uuid;
   }
 }
-module.exports = BasicUuid;
+export default BasicUuid;

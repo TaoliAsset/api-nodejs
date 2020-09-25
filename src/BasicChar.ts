@@ -7,4 +7,4 @@ class BasicChar extends BasicByte {
     this.dtype = 2;
   }
 }
-module.exports = BasicChar;
+export default BasicChar;

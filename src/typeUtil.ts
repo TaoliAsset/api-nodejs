@@ -53,4 +53,4 @@ tUtil.scalar2BufR = function (value, options) {
     return null;
   }
 };
-module.exports = tUtil;
+export default tUtil;

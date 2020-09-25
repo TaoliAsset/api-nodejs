@@ -57,4 +57,4 @@ class BasicMinute extends TimeObj {
   //     return this.timeObj.toString();
   // }
 }
-module.exports = BasicMinute;
+export default BasicMinute;

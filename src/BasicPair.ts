@@ -13,4 +13,4 @@ class BasicPair extends BasicVector {
     this.dform = 2;
   }
 }
-module.exports = BasicPair;
+export default BasicPair;

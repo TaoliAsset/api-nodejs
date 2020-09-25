@@ -93,4 +93,4 @@ class BasicMat extends BasicVector {
     return Buffer.from(byteArray);
   }
 }
-module.exports = BasicMat;
+export default BasicMat;

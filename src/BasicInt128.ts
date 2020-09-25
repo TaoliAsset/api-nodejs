@@ -119,4 +119,4 @@ class BasicInt128 extends BasicScalar {
     return this.hex128;
   }
 }
-module.exports = BasicInt128;
+export default BasicInt128;

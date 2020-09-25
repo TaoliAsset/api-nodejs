@@ -15,4 +15,4 @@ class BasicScalar {
     return Buffer.from([this.dtype, this.dfrom]);
   }
 }
-module.exports = BasicScalar;
+export default BasicScalar;

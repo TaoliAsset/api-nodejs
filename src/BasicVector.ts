@@ -76,4 +76,4 @@ class BasicVector {
     }
   }
 }
-module.exports = BasicVector;
+export default BasicVector;

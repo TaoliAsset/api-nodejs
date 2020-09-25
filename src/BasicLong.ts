@@ -14,4 +14,4 @@ class BasicLong extends BasicScalar {
     return buf;
   }
 }
-module.exports = BasicLong;
+export default BasicLong;

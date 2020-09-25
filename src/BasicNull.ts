@@ -96,4 +96,4 @@ class BasicNull extends BasicScalar {
     }
   }
 }
-module.exports = BasicNull;
+export default BasicNull;

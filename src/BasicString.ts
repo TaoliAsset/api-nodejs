@@ -17,4 +17,4 @@ class BasicString extends BasicScalar {
   }
 }
 
-module.exports = BasicString;
+export default BasicString;

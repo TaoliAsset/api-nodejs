@@ -95,4 +95,4 @@ class BufferRe {
     return buf;
   }
 }
-module.exports = BufferRe;
+export default BufferRe;

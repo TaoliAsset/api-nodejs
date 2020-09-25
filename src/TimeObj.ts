@@ -20,4 +20,4 @@ class TimeObj extends BasicScalar {
   }
 }
 
-module.exports = TimeObj;
+export default TimeObj;

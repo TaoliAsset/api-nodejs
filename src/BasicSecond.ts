@@ -59,4 +59,4 @@ class BasicSecond extends TimeObj {
   //     return this.timeObj.toString();
   // }
 }
-module.exports = BasicSecond;
+export default BasicSecond;

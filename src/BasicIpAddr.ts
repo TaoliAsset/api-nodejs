@@ -30,4 +30,4 @@ class BasicIpAddr extends BasicInt128 {
     return super.toString();
   }
 }
-module.exports = BasicIpAddr;
+export default BasicIpAddr;

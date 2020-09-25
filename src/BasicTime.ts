@@ -71,4 +71,4 @@ class BasicTime extends TimeObj {
   //     return this.timeObj.toString();
   // }
 }
-module.exports = BasicTime;
+export default BasicTime;

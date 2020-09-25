@@ -136,4 +136,4 @@ class StreamReader {
     }
   }
 }
-module.exports = StreamReader;
+export default StreamReader;

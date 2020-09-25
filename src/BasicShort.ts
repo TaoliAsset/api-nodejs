@@ -14,4 +14,4 @@ class BasicShort extends BasicScalar {
     return buf;
   }
 }
-module.exports = BasicShort;
+export default BasicShort;

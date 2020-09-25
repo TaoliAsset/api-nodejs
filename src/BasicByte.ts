@@ -13,4 +13,4 @@ class BasicByte extends BasicScalar {
     return buf;
   }
 }
-module.exports = BasicByte;
+export default BasicByte;

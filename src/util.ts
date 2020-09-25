@@ -327,4 +327,4 @@ Util.allocBuf = function (slen, dlen, blockSize = 1024) {
   return buf;
 };
 
-module.exports = Util;
+export default Util;

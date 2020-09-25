@@ -56,4 +56,4 @@ class BasicMonth extends TimeObj {
   //     return this.timeObj.toString();
   // }
 }
-module.exports = BasicMonth;
+export default BasicMonth;

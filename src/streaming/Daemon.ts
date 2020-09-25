@@ -160,4 +160,4 @@ class Daemon {
   //         this.handle(id, rest);
   // }
 }
-module.exports = Daemon;
+export default Daemon;

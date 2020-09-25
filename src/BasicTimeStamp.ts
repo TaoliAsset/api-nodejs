@@ -74,4 +74,4 @@ class BasicTimeStamp extends TimeObj {
     return this.timeObj.date.toString() + " " + this.timeObj.time.toString();
   }
 }
-module.exports = BasicTimeStamp;
+export default BasicTimeStamp;

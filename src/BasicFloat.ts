@@ -14,4 +14,4 @@ class BasicFloat extends BasicScalar {
     return buf;
   }
 }
-module.exports = BasicFloat;
+export default BasicFloat;

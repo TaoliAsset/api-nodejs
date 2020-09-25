@@ -9,4 +9,4 @@ let constants = Object.freeze({
   infoLevel: 0, //0: no info, 1: little info, 2: many info, 3: debug
 });
 
-module.exports = constants;
+export default constants;

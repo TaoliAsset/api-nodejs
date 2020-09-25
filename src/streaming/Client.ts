@@ -82,4 +82,4 @@ class Client {
       console.log(`unsubscribe ${host}:${port}:/${tableName}/${actionName}`);
   }
 }
-module.exports = Client;
+export default Client;

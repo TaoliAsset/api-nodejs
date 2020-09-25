@@ -213,4 +213,4 @@ class DBconnection {
     }
   }
 }
-module.exports = DBconnection;
+export default DBconnection;

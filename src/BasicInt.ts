@@ -14,4 +14,4 @@ class BasicInt extends BasicScalar {
     return buf;
   }
 }
-module.exports = BasicInt;
+export default BasicInt;

@@ -25,4 +25,4 @@ class BasicSet extends BasicVector {
     }
   }
 }
-module.exports = BasicSet;
+export default BasicSet;

@@ -7,4 +7,4 @@ class BasicBool extends BasicByte {
     this.dtype = 1;
   }
 }
-module.exports = BasicBool;
+export default BasicBool;

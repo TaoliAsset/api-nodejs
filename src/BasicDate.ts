@@ -132,4 +132,4 @@ class BasicDate extends TimeObj {
   //     return this.timeObj.toString();
   // }
 }
-module.exports = BasicDate;
+export default BasicDate;
