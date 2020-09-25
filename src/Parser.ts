@@ -15,9 +15,7 @@ import BasicInt128 from "./BasicInt128";
 import BasicNull from "./BasicNull";
 
 class Parser {
-  constructor(isSmall = true) {
-    this.isSmall = isSmall;
-  }
+  constructor(public isSmall = true) {}
 
   bytes2DType(bb, type) {
     let value;
