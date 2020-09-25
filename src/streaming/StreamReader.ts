@@ -2,10 +2,24 @@ import TableCheck from "./TableCheck";
 import VectorCheck from "./VectorCheck";
 
 class StreamReader {
-  constructor() {
-    this.hlen = 17;
-    this.msgid = 0n;
-  }
+  hlen = 17;
+  msgid = 0n;
+  state = 0;
+  buf = null;
+  topic = null;
+  nrow2r = 0;
+  nrow = 0;
+  ncol = 0;
+  df = 1;
+  dt = -1;
+  offset = 0;
+  pdata = 0;
+  tc = null;
+  vc = null;
+  isful = false;
+
+  constructor(public isSmall = true) {}
+
   init() {
     this.isSmall = true;
     this.state = 0;
