@@ -1,16 +1,17 @@
 import Util from "./util";
 
 class BufferRe {
-  constructor(initSize, blockSize = 16384) {
-    this.initSize = initSize;
-    this.blockSize = blockSize;
+  bufs = new Array(1);
+
+  length = 1;
+  offset = 0;
+  offseti = 0;
+  offsetp = 0;
+
+  total: number;
+  constructor(public initSize: number, public blockSize = 16384) {
     this.total = initSize;
-    this.bufs = new Array(1);
     this.bufs[0] = Buffer.alloc(initSize);
-    this.length = 1;
-    this.offset = 0;
-    this.offseti = 0;
-    this.offsetp = 0;
   }
   reset() {
     this.offset = 0;
