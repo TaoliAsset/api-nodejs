@@ -1,9 +1,10 @@
 class BasicScalar {
-  constructor() {
-    this.value = null;
-    this.dform = 0;
-    this.isSmall = true;
-  }
+  value = null;
+  dform = 0;
+  isSmall = true;
+  dtype: number;
+  dfrom: number;
+  constructor() {}
   tobytes() {
     return null;
   }
