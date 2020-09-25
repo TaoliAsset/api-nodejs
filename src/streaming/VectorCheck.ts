@@ -1,7 +1,21 @@
 import Util from "../util";
 
 class VectorCheck {
-  constructor() {
+  constructor(public isSmall = true) {}
+
+  dt = -1;
+  df = 1;
+  isful = false;
+  state = 0;
+  offset = 0;
+  ncol = 0;
+  nrow = 0;
+  anyrow = 0;
+  arr = null;
+  pos = 0;
+
+  hlen = 10;
+  cctor() {
     this.hlen = 10;
   }
   init(isSmall = true) {
