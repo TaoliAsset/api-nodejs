@@ -2,10 +2,10 @@ import BasicScalar from "./BasicScalar";
 import constants from "./constants";
 
 class BasicByte extends BasicScalar {
-  constructor(value) {
+  dtype = 2;
+  constructor(value: number) {
     super();
-    this.value = value == null ? constants.byteMin : value;
-    this.dtype = 2;
+    this.value = value ?? constants.byteMin;
   }
   tobytes() {
     let buf = Buffer.alloc(1);
