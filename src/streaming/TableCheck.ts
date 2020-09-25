@@ -1,9 +1,19 @@
 import VectorCheck from "./VectorCheck";
 
 class TableCheck {
-  constructor() {
-    this.hlen = 10;
-  }
+  hlen = 10;
+  dt = 0;
+  df = 6;
+  isful = false;
+  state = 0;
+  offset = 0;
+  ncol = 0;
+  nrow = 0;
+  arr = null;
+  pos = 0;
+  colpos = 0;
+
+  constructor(public isSmall = true) {}
   init(isSmall = true) {
     this.isSmall = isSmall;
     this.dt = 0;
