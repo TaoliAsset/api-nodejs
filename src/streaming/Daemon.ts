@@ -1,26 +1,27 @@
-import net from "net";
+import { createServer } from "net";
 // const Util = require('../util');
 // const infolevel = require('../constants').infoLevel;
 import Parser from "../Parser";
 import StreamReader from "./StreamReader";
+import { EventEmitter } from "events";
 
 class Daemon {
-  constructor(port, channel) {
-    this.port = port;
-    this.channel = channel;
-    this.parser = new Parser();
-    this.streamReader = new StreamReader().init();
-    this.buffer = Buffer.alloc(4194304); // 4MB
-    this.buflen = 0;
-  }
+  parser = new Parser();
+  streamReader = new StreamReader().init();
+  buffer = Buffer.alloc(4194304); // 4MB
+  buflen = 0;
+
+  constructor(public port: number, public channel: EventEmitter) {}
 
   run() {
     const cliArr = [];
-    const server = net.createServer();
+    const server = createServer();
     server.on("connection", async (socket) => {
-      let cli = {};
-      cli.id = cliArr.length;
-      cli.socket = socket;
+      let cli = {
+        id: cliArr.length,
+        socket,
+      };
+
       cliArr.push(cli);
       this.channel.emit("join", cli.id, cli.socket);
 
