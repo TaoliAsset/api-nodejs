@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicVector = require("./BasicVector");
 
 class BasicDict extends BasicVector {

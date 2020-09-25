@@ -1,5 +1,3 @@
-"use strict";
-
 const Util = require("./util");
 const constants = require("./constants");
 
@@ -32,7 +30,7 @@ class BasicTime extends TimeObj {
   }
 
   parseInt(value) {
-    var hour, minute, second, nanoSecond;
+    let hour, minute, second, nanoSecond;
     hour = Math.floor(value / 3600000);
     minute = Math.floor(value / 60000) % 60;
     second = Math.floor(value / 1000) % 60;

@@ -1,13 +1,11 @@
-"use strict";
-
 const Util = require("./util");
 const constants = require("./constants");
 
 const BasicDate = require("./BasicDate");
 const BasicTime = require("./BasicTime");
 const TimeObj = require("./TimeObj");
-var basicDate = new BasicDate();
-var basicTime = new BasicTime();
+let basicDate = new BasicDate();
+let basicTime = new BasicTime();
 
 class BasicTimeStamp extends TimeObj {
   constructor(value) {
@@ -44,10 +42,10 @@ class BasicTimeStamp extends TimeObj {
   parseLong(value) {
     let days = Number(value / 86400000n);
     if (value < 0n && value % 86400000n !== 0n) days -= 1;
-    var date = basicDate.parseInt(days);
+    let date = basicDate.parseInt(days);
     let mss = Number(value % 86400000n);
     if (mss < 0) mss += 86400000;
-    var time = basicTime.parseInt(mss);
+    let time = basicTime.parseInt(mss);
     return {
       date: date,
       time: time,

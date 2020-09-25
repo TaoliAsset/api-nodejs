@@ -1,6 +1,4 @@
-"use strict";
-
-var constants = Object.freeze({
+let constants = Object.freeze({
   nullV: 16,
   byteMin: -128,
   shortMin: -32768,

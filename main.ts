@@ -1,5 +1,3 @@
-"use strict";
-
 const Client = require("./src/streaming/Client");
 
 function assertEquals(expected, value, name) {
@@ -41,8 +39,8 @@ function handleMsg(data) {
 }
 
 async function main() {
-  var DBconnection = require("./src/DBconnection"); //import API module
-  var myConnect = new DBconnection(); //create connection object
+  let DBconnection = require("./src/DBconnection"); //import API module
+  let myConnect = new DBconnection(); //create connection object
   await myConnect.connect("localhost", 8848); //set up connection
   const test = true;
   const debug = !test;
@@ -291,7 +289,7 @@ async function main() {
     // result = await myConnect.run("(1,'AA', 2.5)");
     // result = new BasicDateTime("1958-06-13 13:30:10");
     // result = await myConnect.run("table(1:0,`id`val,[INT,INT])");
-    // var script = 'login("admin", "123456") \n'+
+    // let script = 'login("admin", "123456") \n'+
     // 'dbName="dfs://db_testRun" \n' +
     // 'if(existsDatabase(dbName)){ \n'+
     // '   dropDatabase(dbName) \n'+

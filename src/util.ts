@@ -1,8 +1,6 @@
-"use strict";
-
 //should not import any data type
 
-var Util = new Object();
+let Util = new Object();
 
 Util.dtypelen = function (dtype) {
   switch (dtype) {

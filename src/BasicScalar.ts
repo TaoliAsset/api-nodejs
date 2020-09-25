@@ -1,5 +1,3 @@
-"use strict";
-
 class BasicScalar {
   constructor() {
     this.value = null;

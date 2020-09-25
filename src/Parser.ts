@@ -1,5 +1,3 @@
-"use strict";
-
 const Util = require("./util");
 
 const BasicDate = require("./BasicDate");
@@ -147,7 +145,7 @@ class Parser {
         high = bb.readBigInt64BE();
         low = bb.readBigInt64BE(8);
       }
-      var uuid = new BasicUuid({ high: high, low: low });
+      let uuid = new BasicUuid({ high: high, low: low });
       return uuid;
     } else if (type === 30) {
       // ipaddr
@@ -159,7 +157,7 @@ class Parser {
         high = bb.readBigInt64BE();
         low = bb.readBigInt64BE(8);
       }
-      var ipaddr = new BasicIpAddr({ high: high, low: low });
+      let ipaddr = new BasicIpAddr({ high: high, low: low });
       return ipaddr;
     } else if (type === 31) {
       // int128
@@ -171,7 +169,7 @@ class Parser {
         high = bb.readBigInt64BE();
         low = bb.readBigInt64BE(8);
       }
-      var int128 = new BasicInt128({ high: high, low: low });
+      let int128 = new BasicInt128({ high: high, low: low });
       return int128;
     } else {
       return null;

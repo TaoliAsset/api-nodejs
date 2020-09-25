@@ -1,5 +1,3 @@
-"use strict";
-
 const Util = require("./util");
 const constants = require("./constants");
 
@@ -32,7 +30,7 @@ class BasicNanoTime extends TimeObj {
   }
 
   parseLong(value) {
-    var hour, minute, second, nanoSecond;
+    let hour, minute, second, nanoSecond;
     const nsperhour = 3600000000000n;
     const nsperminute = 60000000000n;
     const nspersecond = 1000000000n;

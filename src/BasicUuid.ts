@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicInt128 = require("./BasicInt128");
 
 class BasicUuid extends BasicInt128 {

@@ -1,5 +1,3 @@
-"use strict";
-
 const DT = require("./src/DT");
 const Client = require("./src/streaming/Client");
 
@@ -11,8 +9,8 @@ function handleMsg2(data) {
 }
 
 async function main() {
-  var DBconnection = require("./src/DBconnection"); //import API module
-  var myConnect = new DBconnection(); //create connection object
+  let DBconnection = require("./src/DBconnection"); //import API module
+  let myConnect = new DBconnection(); //create connection object
   await myConnect.connect("localhost", 8848); //set up connection
   const test = true;
   const debug = !test;

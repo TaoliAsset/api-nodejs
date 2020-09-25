@@ -1,5 +1,3 @@
-"use strict";
-
 // const Util = require("./util");
 const tUtil = require("./typeUtil");
 const constants = require("./constants");

@@ -1,5 +1,3 @@
-"use strict";
-
 const tUtil = require("./typeUtil");
 const infolevel = require("./constants").infoLevel;
 

@@ -1,5 +1,3 @@
-"use strict";
-
 const Util = require("./util");
 const constants = require("./constants");
 
@@ -7,8 +5,8 @@ const BasicDate = require("./BasicDate");
 const BasicNanoTime = require("./BasicNanoTime");
 const TimeObj = require("./TimeObj");
 
-var basicDate = new BasicDate();
-var basicNanoTime = new BasicNanoTime();
+let basicDate = new BasicDate();
+let basicNanoTime = new BasicNanoTime();
 
 class BasicNanoTimeStamp extends TimeObj {
   constructor(value) {
@@ -47,9 +45,9 @@ class BasicNanoTimeStamp extends TimeObj {
     let bigdays = value / nsperday;
     let bignanos = value % nsperday;
     if (value < 0n && bignanos !== 0n) bigdays -= 1n;
-    var date = basicDate.parseInt(Number(bigdays));
+    let date = basicDate.parseInt(Number(bigdays));
     if (bignanos < 0n) bignanos += nsperday;
-    var time = basicNanoTime.parseLong(bignanos);
+    let time = basicNanoTime.parseLong(bignanos);
 
     return {
       date: date,

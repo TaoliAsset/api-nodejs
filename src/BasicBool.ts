@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicByte = require("./BasicByte");
 
 class BasicBool extends BasicByte {

@@ -1,5 +1,3 @@
-"use strict";
-
 const Util = require("./util");
 const constants = require("./constants");
 
@@ -60,7 +58,7 @@ class BasicDate extends TimeObj {
   }
 
   parseInt(days) {
-    var year, month, day;
+    let year, month, day;
     const daysof400years = 146097;
     days += 719529; // 719529: days of 0000-00-00 to 1970-01-01
     let era = Math.floor(days / daysof400years); // 146097: days of 400 years

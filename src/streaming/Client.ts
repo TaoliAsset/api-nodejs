@@ -1,5 +1,3 @@
-"use strict";
-
 const infolevel = require("../constants").infoLevel;
 
 const DBconnection = require("../DBconnection");

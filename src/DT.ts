@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicInt = require("./BasicInt");
 const BasicByte = require("./BasicByte");
 const BasicBool = require("./BasicBool");
@@ -30,7 +28,7 @@ const BasicNull = require("./BasicNull");
 const BasicSymbol = require("./BasicSymbol");
 const BasicChar = require("./BasicChar");
 
-var DtCt = new Object();
+let DtCt = new Object();
 
 function arrayLize(value, ftypect) {
   if (value instanceof BasicScalar) return value;

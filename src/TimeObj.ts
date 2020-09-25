@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicScalar = require("./BasicScalar");
 
 class TimeObj extends BasicScalar {

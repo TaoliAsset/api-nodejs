@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicScalar = require("./BasicScalar");
 const constants = require("./constants");
 

@@ -1,5 +1,3 @@
-"use strict";
-
 const net = require("net");
 // const Util = require('../util');
 // const infolevel = require('../constants').infoLevel;

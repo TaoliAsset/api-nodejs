@@ -1,5 +1,3 @@
-"use strict";
-
 const VectorCheck = require("./VectorCheck");
 
 class TableCheck {

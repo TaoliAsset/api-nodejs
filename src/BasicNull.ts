@@ -1,5 +1,3 @@
-"use strict";
-
 const Util = require("./util");
 const BasicScalar = require("./BasicScalar");
 const BasicByte = require("./BasicByte");

@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicScalar = require("./BasicScalar");
 // const hexcv = new Map([['0',0n],['1',1n],['2',2n],['3',3n],['4',4n],['5',5n],['6',6n],['7',7n],['8',8n],['9',9n],
 //     ['a',10n],['b',11n],['c',12n],['d',13n],['e',14n],['f',15n]]);

@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicScalar = require("./BasicScalar");
 const BasicBool = require("./BasicBool");
 const BasicDouble = require("./BasicDouble");
@@ -8,7 +6,7 @@ const BasicLong = require("./BasicLong");
 const BasicInt = require("./BasicInt");
 const BasicNull = require("./BasicNull");
 
-var tUtil = new Object();
+let tUtil = new Object();
 
 tUtil.scalarTypeR = function (value) {
   if (value instanceof BasicScalar) return value.dtype;

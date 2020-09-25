@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicString = require("./BasicString");
 
 class BasicSymbol extends BasicString {

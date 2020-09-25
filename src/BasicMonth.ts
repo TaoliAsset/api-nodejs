@@ -1,5 +1,3 @@
-"use strict";
-
 const Util = require("./util");
 const constants = require("./constants");
 
@@ -27,8 +25,8 @@ class BasicMonth extends TimeObj {
   }
 
   parseInt(value) {
-    var year = Math.floor(value / 12);
-    var month = (value % 12) + 1;
+    let year = Math.floor(value / 12);
+    let month = (value % 12) + 1;
     return {
       year: year,
       month: month,

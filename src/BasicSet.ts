@@ -1,5 +1,3 @@
-"use strict";
-
 const BasicVector = require("./BasicVector");
 // const Util = require("./util");
 // const BasicNull = require("./BasicNull");

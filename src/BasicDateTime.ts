@@ -1,13 +1,11 @@
-"use strict";
-
 const Util = require("./util");
 const constants = require("./constants");
 
 const BasicDate = require("./BasicDate");
 const BasicTime = require("./BasicTime");
 const TimeObj = require("./TimeObj");
-var basicDate = new BasicDate();
-var basicTime = new BasicTime();
+let basicDate = new BasicDate();
+let basicTime = new BasicTime();
 
 class BasicDateTime extends TimeObj {
   constructor(value) {
@@ -40,11 +38,11 @@ class BasicDateTime extends TimeObj {
   }
 
   parseInt(value) {
-    var days = Math.floor(value / 86400);
-    var date = basicDate.parseInt(days);
+    let days = Math.floor(value / 86400);
+    let date = basicDate.parseInt(days);
     let sec = value % 86400;
     if (sec < 0) sec += 86400;
-    var time = basicTime.parseInt(sec * 1000);
+    let time = basicTime.parseInt(sec * 1000);
     return {
       year: date.year,
       month: date.month,
