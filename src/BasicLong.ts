@@ -2,10 +2,12 @@ import BasicScalar from "./BasicScalar";
 import constants from "./constants";
 
 class BasicLong extends BasicScalar {
+  dtype = 5;
+  value: bigint;
+
   constructor(value) {
     super();
-    this.dtype = 5;
-    this.value = value == null ? constants.longMin : BigInt(value);
+    this.value = BigInt(value ?? constants.longMin);
   }
   tobytes() {
     let buf = Buffer.alloc(8);
