@@ -4,8 +4,8 @@ import constants from "./constants";
 import BasicDate from "./BasicDate";
 import BasicTime from "./BasicTime";
 import TimeObj from "./TimeObj";
-let basicDate = new BasicDate();
-let basicTime = new BasicTime();
+let basicDate = new BasicDate(null);
+let basicTime = new BasicTime(null);
 
 class BasicTimeStamp extends TimeObj {
   constructor(value) {
