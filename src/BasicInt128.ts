@@ -22,6 +22,10 @@ const hexcv = new Map([
 const int128Z = "00000000000000000000000000000000";
 
 class BasicInt128 extends BasicScalar {
+  high: bigint;
+  low: bigint;
+  buf;
+  hex128;
   constructor(value) {
     super();
     if (value == null) this.high = this.low = 0n;
