@@ -1,6 +1,7 @@
 import BasicVector from "./BasicVector";
 
 class BasicDict extends BasicVector {
+  keys: string[];
   constructor(value) {
     if (!(value instanceof Map)) super(null);
     else {
