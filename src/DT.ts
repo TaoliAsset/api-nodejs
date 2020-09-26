@@ -28,6 +28,38 @@ import BasicNull from "./BasicNull";
 import BasicSymbol from "./BasicSymbol";
 import BasicChar from "./BasicChar";
 
+export {
+  BasicInt,
+  BasicByte,
+  BasicBool,
+  BasicShort,
+  BasicLong,
+  BasicDate,
+  BasicMonth,
+  BasicTime,
+  BasicMinute,
+  BasicSecond,
+  BasicDateTime,
+  BasicTimeStamp,
+  BasicNanoTime,
+  BasicFloat,
+  BasicDouble,
+  BasicVector,
+  BasicPair,
+  BasicMat,
+  BasicSet,
+  BasicDict,
+  BasicTable,
+  BasicNanoTimeStamp,
+  BasicScalar,
+  BasicUuid,
+  BasicIpAddr,
+  BasicInt128,
+  BasicNull,
+  BasicSymbol,
+  BasicChar,
+};
+
 function arrayLize(value, ftypect) {
   if (value instanceof BasicScalar) return value;
   if (!(value instanceof Array)) return ftypect(value);

@@ -1,8 +1,7 @@
-const { UUID } = require("../src/DT");
+import DBconnection from "../src/DBconnection";
+import assert from "assert";
 
 async function test_run() {
-  let assert = require("assert");
-  let DBconnection = require("../src/DBconnection"); //import API module
   let myConnect = new DBconnection();
 
   before(async function () {

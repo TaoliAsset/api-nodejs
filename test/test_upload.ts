@@ -1,10 +1,10 @@
-const { Double, Int, Short, Float, Minute } = require("../src/DT");
-const { Console } = require("console");
+// const { Double, Int, Short, Float, Minute } = require("../src/DT");
+// const { Console } = require("console");
+import assert from "assert";
+import DBconnection from "../src/DBconnection";
+import DT from "../src/DT";
 
 async function test_upload() {
-  let assert = require("assert");
-  let DBconnection = require("../src/DBconnection"); //import API module
-  let DT = require("../src/DT");
   let myConnect = new DBconnection();
 
   before(async function () {

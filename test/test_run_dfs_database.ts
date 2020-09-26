@@ -1,7 +1,8 @@
+import assert from "assert";
+
+import DBconnection from "../src/DBconnection";
+import DT from "../src/DT";
 async function test_run_dfs() {
-  let assert = require("assert");
-  let DBconnection = require("../src/DBconnection"); //import API module
-  let DT = require("../src/DT");
   let myConnect = new DBconnection();
 
   before(async function () {
