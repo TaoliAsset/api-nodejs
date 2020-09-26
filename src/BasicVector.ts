@@ -8,9 +8,9 @@ import BasicInt from "./BasicInt";
 // import BasicString from "./BasicString";
 
 class BasicVector {
-  constructor(value) {
-    this.value = value;
-    this.dform = 1;
+  dform = 1;
+  dt: number;
+  constructor(public value) {
     this.dt = this.elementDtype();
   }
   elementDtype() {
