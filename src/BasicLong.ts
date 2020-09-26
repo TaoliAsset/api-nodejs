@@ -10,7 +10,7 @@ class BasicLong extends BasicScalar {
     this.value = BigInt(value ?? constants.longMin);
   }
   tobytes() {
-    let buf = Buffer.alloc(8);
+    const buf = Buffer.alloc(8);
     if (this.isSmall) buf.writeBigInt64LE(this.value);
     else buf.writeBigInt64BE(this.value);
     return buf;

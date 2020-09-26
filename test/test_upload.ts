@@ -5,10 +5,10 @@ import DBconnection from "../src/DBconnection";
 import DT from "../src/DT";
 
 async function test_upload() {
-  let myConnect = new DBconnection();
+  const myConnect = new DBconnection();
 
   before(async function () {
-    let config = require("./setup/settings");
+    const config = require("./setup/settings");
     await myConnect.connect(config.HOST, config.PORT, "admin", "123456");
   });
 
@@ -20,68 +20,68 @@ async function test_upload() {
     describe("#upload()", function () {
       it("upload int scalar", async function () {
         await myConnect.upload("a", DT.Int(1));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, 1);
       });
 
       it("upload int vector", async function () {
         await myConnect.upload("a", DT.Int([0, 2, 1]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, [0, 2, 1]);
         await myConnect.upload("a", [0, 2]);
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, [0, 2]);
       });
 
       it("upload int NULL", async function () {
         await myConnect.upload("a", DT.Int());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload short scalar", async function () {
         await myConnect.upload("a", DT.Short(-22));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, -22);
       });
 
       it("upload short vector", async function () {
         await myConnect.upload("a", DT.Short([-2, Short(), 0]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, [-2, null, 0]);
       });
 
       it("upload short NULL", async function () {
         await myConnect.upload("a", DT.Short());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload long scalar", async function () {
         await myConnect.upload("a", DT.Long(-22));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, -22);
       });
 
       it("upload long vector", async function () {
         await myConnect.upload("a", DT.Long([-7, 0]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, [-7, 0]);
       });
       it("upload long NULL", async function () {
         await myConnect.upload("a", DT.Long());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload float scalar", async function () {
         await myConnect.upload("a", DT.Float(-22.2));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.toFixed(1), -22.2);
       });
       it("upload float vector", async function () {
         await myConnect.upload("a", DT.Float([1.0, 2.3, Float()]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re[0].toFixed(1), 1.0);
         assert.deepEqual(re[1].toFixed(1), 2.3);
         assert.deepEqual(re[2], null);
@@ -89,76 +89,76 @@ async function test_upload() {
 
       it("upload float NULL", async function () {
         await myConnect.upload("a", DT.Float());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload double scalar", async function () {
         await myConnect.upload("a", DT.Double(-22.0));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, -22.0);
       });
 
       it("upload double vector", async function () {
         await myConnect.upload("a", DT.Double([1, 2, 3.1]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, [1, 2, 3.1]);
       });
       it("upload double NULL", async function () {
         await myConnect.upload("a", DT.Double());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload char scalar", async function () {
         await myConnect.upload("a", DT.Char("a"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, "a");
       });
 
       it("upload char vector", async function () {
         await myConnect.upload("a", DT.Char([DT.Char(), "1", "$"]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, [null, "1", "$"]);
       });
       it("upload char NULL", async function () {
         await myConnect.upload("a", DT.Char());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
       it("upload bool scalar", async function () {
         await myConnect.upload("a", DT.Bool(true));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, true);
       });
 
       it("upload bool vector", async function () {
         await myConnect.upload("a", DT.Bool([true, true, false]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, [true, true, false]);
       });
 
       it("upload bool NULL", async function () {
         await myConnect.upload("a", DT.Bool());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload symbol scalar", async function () {
         await myConnect.upload("a", DT.Symbol("dolphindb"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, "dolphindb");
       });
 
       it("upload symbol vector", async function () {
         await myConnect.upload("a", DT.Symbol(["aa", "bb", "cc"]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, ["aa", "bb", "cc"]);
       });
 
       it("upload symbol NULL", async function () {
         await myConnect.upload("a", DT.Symbol(""));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, "");
       });
 
@@ -167,7 +167,7 @@ async function test_upload() {
           "a",
           DT.UUID("5d212a78-cc48-e3b1-4235-b4d91473ee87")
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.toString(), "5d212a78-cc48-e3b1-4235-b4d91473ee87");
       });
 
@@ -179,20 +179,20 @@ async function test_upload() {
             "5d212a78-cc48-e3b1-4235-b4d91473ee88",
           ])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].toString(), "5d212a78-cc48-e3b1-4235-b4d91473ee87");
         assert.equal(re[1].toString(), "5d212a78-cc48-e3b1-4235-b4d91473ee88");
       });
 
       it("upload UUID NULL", async function () {
         await myConnect.upload("a", DT.UUID(0, 0));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, "00000000-0000-0000-0000-000000000000");
       });
 
       it("upload ipaddr scalar", async function () {
         await myConnect.upload("a", DT.IpAddr("192.168.1.135"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.toString(), "192.168.1.135");
       });
 
@@ -201,13 +201,13 @@ async function test_upload() {
           "a",
           DT.IpAddr(["192.168.1.135", "192.168.1.132"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re.toString(), "192.168.1.135,192.168.1.132");
       });
 
       it("upload ipaddr NULL", async function () {
         await myConnect.upload("a", DT.IpAddr());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, "0.0.0.0");
       });
 
@@ -216,7 +216,7 @@ async function test_upload() {
           "a",
           DT.Int128("e1671797c52e15f763380b45e841ec32")
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.toString(), "e1671797c52e15f763380b45e841ec32");
       });
 
@@ -228,7 +228,7 @@ async function test_upload() {
             "e1671797c52e15f763380b45e841ec33",
           ])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(
           re.toString(),
           "e1671797c52e15f763380b45e841ec32,e1671797c52e15f763380b45e841ec33"
@@ -237,13 +237,13 @@ async function test_upload() {
 
       it("upload int128 NULL", async function () {
         await myConnect.upload("a", DT.Int128(0, 0));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.toString(), "00000000000000000000000000000000");
       });
 
       it("upload date scalar", async function () {
         await myConnect.upload("a", DT.Date("1960-01-01"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["year"], 1960);
         assert.equal(re.get()["month"], 1);
         assert.equal(re.get()["day"], 1);
@@ -254,7 +254,7 @@ async function test_upload() {
           "a",
           DT.Date(["1973-02-01", "1960-01-01", "1970-01-03"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["year"], 1973);
         assert.equal(re[0].get()["month"], 2);
         assert.equal(re[0].get()["day"], 1);
@@ -269,13 +269,13 @@ async function test_upload() {
 
       it("upload date null scalar", async function () {
         await myConnect.upload("a", DT.Date());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload month scalar", async function () {
         await myConnect.upload("a", DT.Month("1960-01"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["year"], 1960);
         assert.equal(re.get()["month"], 1);
       });
@@ -285,7 +285,7 @@ async function test_upload() {
           "a",
           DT.Month(["1973-02", "1960-01", "1970-03"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["year"], 1973);
         assert.equal(re[0].get()["month"], 2);
         assert.equal(re[1].get()["year"], 1960);
@@ -296,7 +296,7 @@ async function test_upload() {
 
       it("upload time scalar", async function () {
         await myConnect.upload("a", DT.Time("13:30:10.008"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["hour"], 13);
         assert.equal(re.get()["minute"], 30);
         assert.equal(re.get()["second"], 10);
@@ -308,7 +308,7 @@ async function test_upload() {
           "a",
           DT.Time([, "13:30:10.009", "12:30:10.010"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         console.log(re);
         assert.equal(re[0], null);
         assert.equal(re[1].get()["hour"], 13);
@@ -324,19 +324,19 @@ async function test_upload() {
 
       it("upload minute scalar", async function () {
         await myConnect.upload("a", DT.Minute("13:30"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["hour"], 13);
         assert.equal(re.get()["minute"], 30);
       });
       it("upload minute null scalar", async function () {
         await myConnect.upload("a", DT.Minute());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload minute vector", async function () {
         await myConnect.upload("a", DT.Minute(["", "13:31", "13:32"]));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["hour"], 0);
         assert.equal(re[0].get()["minute"], 0);
         assert.equal(re[1].get()["hour"], 13);
@@ -347,7 +347,7 @@ async function test_upload() {
       });
       it("upload second scalar", async function () {
         await myConnect.upload("a", DT.Second("13:30:10"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["hour"], 13);
         assert.equal(re.get()["minute"], 30);
         assert.equal(re.get()["second"], 10);
@@ -358,7 +358,7 @@ async function test_upload() {
           "a",
           DT.Second(["13:30:10", "13:31:10", "13:32:01"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["hour"], 13);
         assert.equal(re[0].get()["minute"], 30);
         assert.equal(re[0].get()["second"], 10);
@@ -373,13 +373,13 @@ async function test_upload() {
 
       it("upload second null scalar", async function () {
         await myConnect.upload("a", DT.Second());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
       it("upload datetime scalar", async function () {
         await myConnect.upload("a", DT.DateTime("2012-06-13 13:30:10"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["year"], 2012);
         assert.equal(re.get()["month"], 6);
         assert.equal(re.get()["day"], 13);
@@ -389,7 +389,7 @@ async function test_upload() {
       });
       it("upload datetime null scalar", async function () {
         await myConnect.upload("a", DT.DateTime());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
       it("upload datetime vector", async function () {
@@ -397,7 +397,7 @@ async function test_upload() {
           "a",
           DT.DateTime(["2012-06-13 13:30:10", "2012-06-13 13:30:11"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["year"], 2012);
         assert.equal(re[0].get()["month"], 6);
         assert.equal(re[0].get()["day"], 13);
@@ -416,7 +416,7 @@ async function test_upload() {
 
       it("upload timestamp scalar", async function () {
         await myConnect.upload("a", DT.TimeStamp("2012-06-13 13:30:10.008"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["date"]["year"], 2012);
         assert.equal(re.get()["date"]["month"], 6);
         assert.equal(re.get()["date"]["day"], 13);
@@ -427,7 +427,7 @@ async function test_upload() {
       });
       it("upload timestamp null scalar", async function () {
         await myConnect.upload("a", DT.TimeStamp());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
@@ -436,7 +436,7 @@ async function test_upload() {
           "a",
           DT.TimeStamp(["2012-06-13 13:30:10.008", "2012-06-13 13:30:11.008"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["date"]["year"], 2012);
         assert.equal(re[0].get()["date"]["month"], 6);
         assert.equal(re[0].get()["date"]["day"], 13);
@@ -460,7 +460,7 @@ async function test_upload() {
 
       it("upload nanotime scalar", async function () {
         await myConnect.upload("a", DT.NanoTime("13:30:10.008007006"));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["hour"], 13);
         assert.equal(re.get()["minute"], 30);
         assert.equal(re.get()["second"], 10);
@@ -469,7 +469,7 @@ async function test_upload() {
 
       it("upload nanotime null scalar", async function () {
         await myConnect.upload("a", DT.NanoTime());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
@@ -478,7 +478,7 @@ async function test_upload() {
           "a",
           DT.NanoTime([, "13:30:10.008007006", "13:30:10.008007007"])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0], null);
         assert.equal(re[1].get()["hour"], 13);
         assert.equal(re[1].get()["minute"], 30);
@@ -496,7 +496,7 @@ async function test_upload() {
           "a",
           DT.NanoTimeStamp("2012-06-01 13:30:10.008007006")
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re.get()["date"]["year"], 2012);
         assert.equal(re.get()["date"]["month"], 6);
         assert.equal(re.get()["date"]["day"], 1);
@@ -508,7 +508,7 @@ async function test_upload() {
 
       it("upload nanotimestamp null scalar", async function () {
         await myConnect.upload("a", DT.NanoTimeStamp());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
@@ -521,7 +521,7 @@ async function test_upload() {
             "2012-06-01 13:30:10.008007007",
           ])
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0], null);
         assert.equal(re[1].get()["date"]["year"], 2012);
         assert.equal(re[1].get()["date"]["month"], 6);
@@ -544,69 +544,71 @@ async function test_upload() {
       });
 
       it("upload symbol set", async function () {
-        let s = new Set(DT.Symbol(["qqq", "qq", "q"]));
+        const s = new Set(DT.Symbol(["qqq", "qq", "q"]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
-        let expected = new Set(["qqq", "qq", "q"]);
+        const re = await myConnect.run("a");
+        const expected = new Set(["qqq", "qq", "q"]);
         assert.deepEqual(re, expected);
       });
 
       it("upload int set", async function () {
-        let s = new Set(DT.Int([2, 3, 5, 6]));
+        const s = new Set(DT.Int([2, 3, 5, 6]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
-        let expected = new Set([2, 3, 5, 6]);
+        const re = await myConnect.run("a");
+        const expected = new Set([2, 3, 5, 6]);
         assert.deepEqual(re, expected);
       });
       it("upload float set", async function () {
-        let s = new Set(DT.Float([2, 3, 5, 6]));
+        const s = new Set(DT.Float([2, 3, 5, 6]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
-        let expected = new Set([2, 3, 5, 6]);
+        const re = await myConnect.run("a");
+        const expected = new Set([2, 3, 5, 6]);
         assert.deepEqual(re, expected);
       });
 
       it("upload double set", async function () {
-        let s = new Set(DT.Double([2.0, -3, 5, 6.2]));
+        const s = new Set(DT.Double([2.0, -3, 5, 6.2]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
-        let excepted = new Set([2.0, -3, 5, 6.2]);
+        const re = await myConnect.run("a");
+        const excepted = new Set([2.0, -3, 5, 6.2]);
         assert.deepEqual(re, excepted);
       });
       it("upload long set", async function () {
-        let s = new Set(DT.Long([2, 3, 5, 6]));
+        const s = new Set(DT.Long([2, 3, 5, 6]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
-        let expected = new Set([2, 3, 5, 6]);
+        const re = await myConnect.run("a");
+        const expected = new Set([2, 3, 5, 6]);
         assert.deepEqual(re, expected);
       });
       it("upload short set", async function () {
-        let s = new Set(DT.Short([2, 3, 5, 0]));
+        const s = new Set(DT.Short([2, 3, 5, 0]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
-        let expected = new Set([2, 3, 5, 0]);
+        const re = await myConnect.run("a");
+        const expected = new Set([2, 3, 5, 0]);
         assert.deepEqual(re, expected);
       });
       it("upload char set", async function () {
-        let s = new Set(DT.Char(["", "$", "a"]));
+        const s = new Set(DT.Char(["", "$", "a"]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
-        let expected = new Set([null, "$", "a"]);
+        const re = await myConnect.run("a");
+        const expected = new Set([null, "$", "a"]);
         assert.deepEqual(re, expected);
       });
       it("upload int128 set", async function () {
-        let s = new Set(DT.Int128(["e1671797c52e15f763380b45e841ec32", ""]));
+        const s = new Set(DT.Int128(["e1671797c52e15f763380b45e841ec32", ""]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(
           Array.from(re).toString(),
           "00000000000000000000000000000000,e1671797c52e15f763380b45e841ec32"
         );
       });
       it("upload uuid set", async function () {
-        let s = new Set(DT.UUID(["5d212a78-cc48-e3b1-4235-b4d91473ee87", ""]));
+        const s = new Set(
+          DT.UUID(["5d212a78-cc48-e3b1-4235-b4d91473ee87", ""])
+        );
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(
           Array.from(re).toString(),
           "00000000-0000-0000-0000-000000000000,5d212a78-cc48-e3b1-4235-b4d91473ee87"
@@ -614,27 +616,27 @@ async function test_upload() {
       });
 
       it("upload ipaddr set", async function () {
-        let s = new Set(DT.IpAddr(["192.168.1.13", ""]));
+        const s = new Set(DT.IpAddr(["192.168.1.13", ""]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(Array.from(re).toString(), "0.0.0.0,192.168.1.13");
       });
       it("upload bool set", async function () {
-        let s = new Set(DT.Bool([true, false]));
+        const s = new Set(DT.Bool([true, false]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, null);
       });
       it("upload bool null set", async function () {
-        let s = new Set(DT.Bool([]));
+        const s = new Set(DT.Bool([]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, null);
       });
       it("upload Date set", async function () {
-        let s = new Set(DT.Date(["1960-01-01", "1970-02-01"]));
+        const s = new Set(DT.Date(["1960-01-01", "1970-02-01"]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["year"], 1970);
         assert.equal(Array.from(re)[0].get()["month"], 2);
         assert.equal(Array.from(re)[0].get()["day"], 1);
@@ -644,27 +646,27 @@ async function test_upload() {
       });
 
       it("upload month set", async function () {
-        let s = new Set(DT.Month([, "1973-02", "1960-01"]));
+        const s = new Set(DT.Month([, "1973-02", "1960-01"]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["year"], 1960);
         assert.equal(Array.from(re)[0].get()["month"], 1);
         assert.equal(Array.from(re)[1].get()["year"], 1973);
         assert.equal(Array.from(re)[1].get()["month"], 2);
       });
       it("upload time set", async function () {
-        let s = new Set(DT.Time([, "13:30:10.009", "13:30:10.010"]));
+        const s = new Set(DT.Time([, "13:30:10.009", "13:30:10.010"]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["hour"], 13);
         assert.equal(Array.from(re)[0].get()["minute"], 30);
         assert.equal(Array.from(re)[0].get()["second"], 10);
         assert.equal(Array.from(re)[0].get()["nanoSecond"], 10000000);
       });
       it("upload minute set", async function () {
-        let s = new Set(DT.Minute(["13:31", "13:32"]));
+        const s = new Set(DT.Minute(["13:31", "13:32"]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["hour"], 13);
         assert.equal(Array.from(re)[0].get()["minute"], 32);
         assert.equal(Array.from(re)[1].get()["hour"], 13);
@@ -672,9 +674,9 @@ async function test_upload() {
       });
 
       it("upload second set", async function () {
-        let s = new Set(DT.Second(["13:31:10", "13:32:01"]));
+        const s = new Set(DT.Second(["13:31:10", "13:32:01"]));
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["hour"], 13);
         assert.equal(Array.from(re)[0].get()["minute"], 32);
         assert.equal(Array.from(re)[0].get()["second"], 1);
@@ -684,11 +686,11 @@ async function test_upload() {
       });
 
       it("upload datetime set", async function () {
-        let s = new Set(
+        const s = new Set(
           DT.DateTime(["2012-06-13 13:30:10", "2012-06-13 13:30:11"])
         );
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["year"], 2012);
         assert.equal(Array.from(re)[0].get()["month"], 6);
         assert.equal(Array.from(re)[0].get()["day"], 13);
@@ -704,11 +706,11 @@ async function test_upload() {
       });
 
       it("upload timestamp set", async function () {
-        let s = new Set(
+        const s = new Set(
           DT.TimeStamp(["2012-06-13 13:30:10.008", "2012-06-13 13:30:10.009"])
         );
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["date"]["year"], 2012);
         assert.equal(Array.from(re)[0].get()["date"]["month"], 6);
         assert.equal(Array.from(re)[0].get()["date"]["day"], 13);
@@ -725,11 +727,11 @@ async function test_upload() {
         assert.equal(Array.from(re)[1].get()["time"]["nanoSecond"], 8000000);
       });
       it("upload nanotime set", async function () {
-        let s = new Set(
+        const s = new Set(
           DT.NanoTime(["13:30:10.008007006", "13:30:10.008007007"])
         );
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["hour"], 13);
         assert.equal(Array.from(re)[0].get()["minute"], 30);
         assert.equal(Array.from(re)[0].get()["second"], 10);
@@ -741,14 +743,14 @@ async function test_upload() {
       });
 
       it("upload nanotimestamp set", async function () {
-        let s = new Set(
+        const s = new Set(
           DT.NanoTimeStamp([
             "2012-06-01 13:30:10.008007006",
             "2013-06-01 13:30:10.008007007",
           ])
         );
         await myConnect.upload("a", DT.Set(s));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(Array.from(re)[0].get()["date"]["year"], 2013);
         assert.equal(Array.from(re)[0].get()["date"]["month"], 6);
         assert.equal(Array.from(re)[0].get()["date"]["day"], 1);
@@ -767,13 +769,13 @@ async function test_upload() {
 
       it("upload null set", async function () {
         await myConnect.upload("a", DT.Set());
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         console.log(re);
         assert.deepEqual(re, null);
       });
 
       it("upload int int dictionary", async function () {
-        let m = new Map(
+        const m = new Map(
           DT.Int([
             [1, 4],
             [2, 5],
@@ -781,8 +783,8 @@ async function test_upload() {
           ])
         );
         await myConnect.upload("a", DT.Dict(m));
-        let re = await myConnect.run("a");
-        let expected = new Map([
+        const re = await myConnect.run("a");
+        const expected = new Map([
           [1, 4],
           [2, 5],
           [3, 6],
@@ -791,13 +793,13 @@ async function test_upload() {
       });
 
       it("upload int string dictionary", async function () {
-        let map = new Map();
+        const map = new Map();
         map.set(1, DT.Symbol("MSFT"));
         map.set(2, DT.Symbol("GOOG"));
         map.set(3, DT.Symbol("IBM"));
         await myConnect.upload("a", DT.Dict(map));
-        let re = await myConnect.run("a");
-        let expected = new Map([
+        const re = await myConnect.run("a");
+        const expected = new Map([
           [1, "MSFT"],
           [2, "GOOG"],
           [3, "IBM"],
@@ -807,15 +809,15 @@ async function test_upload() {
 
       it("upload  null dictionary", async function () {
         await myConnect.upload("a", DT.Dict());
-        let re = await myConnect.run("a");
-        let expected = new Map();
+        const re = await myConnect.run("a");
+        const expected = new Map();
         assert.deepEqual(re, null);
       });
 
       it("upload int any dictionary", async function () {
-        let arr1 = new Array([4, 5, 6]);
-        let arr2 = new Array([1, 2]);
-        let m = new Map(
+        const arr1 = new Array([4, 5, 6]);
+        const arr2 = new Array([1, 2]);
+        const m = new Map(
           DT.Int([
             [1, arr1],
             [2, arr2],
@@ -823,7 +825,7 @@ async function test_upload() {
           ])
         );
         await myConnect.upload("a", DT.Dict(m));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(Array.from(re)[0][0], 3);
         assert.deepEqual(Array.from(re)[0][1], 6);
         assert.deepEqual(Array.from(re)[1][0], 1);
@@ -833,12 +835,12 @@ async function test_upload() {
       });
 
       it("upload string any dictionary", async function () {
-        let map = new Map();
+        const map = new Map();
         map.set("a", DT.Int([4, 5, 6]));
         map.set("b", DT.Int([1, 2]));
         map.set("c", DT.Int(6));
         await myConnect.upload("a", DT.Dict(map));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         console.log(re);
         assert.deepEqual(Array.from(re)[0][0], "c");
         assert.deepEqual(Array.from(re)[0][1], 6);
@@ -849,71 +851,71 @@ async function test_upload() {
       });
 
       it("upload int pair", async function () {
-        let a = new Array(1, 3);
+        const a = new Array(1, 3);
         await myConnect.upload("a", DT.Pair(DT.Int(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array(1, 3);
+        const re = await myConnect.run("a");
+        const expected = new Array(1, 3);
         assert.deepEqual(re, expected);
       });
 
       it("upload string pair", async function () {
-        let a = new Array("hello", "world");
+        const a = new Array("hello", "world");
         await myConnect.upload("a", DT.Pair(DT.Symbol(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array("hello", "world");
+        const re = await myConnect.run("a");
+        const expected = new Array("hello", "world");
         assert.deepEqual(re, expected);
       });
 
       it("upload bool pair", async function () {
-        let a = new Array(true, false);
+        const a = new Array(true, false);
         await myConnect.upload("a", DT.Pair(DT.Bool(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array(true, false);
+        const re = await myConnect.run("a");
+        const expected = new Array(true, false);
         assert.deepEqual(re, expected);
       });
 
       it("upload char pair", async function () {
-        let a = new Array("2", "#");
+        const a = new Array("2", "#");
         await myConnect.upload("a", DT.Pair(DT.Char(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array("2", "#");
+        const re = await myConnect.run("a");
+        const expected = new Array("2", "#");
         assert.deepEqual(re, expected);
       });
       it("upload short pair", async function () {
-        let a = new Array(0, -3);
+        const a = new Array(0, -3);
         await myConnect.upload("a", DT.Pair(DT.Short(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array(0, -3);
+        const re = await myConnect.run("a");
+        const expected = new Array(0, -3);
         assert.deepEqual(re, expected);
       });
       it("upload long pair", async function () {
-        let a = new Array(0, -3);
+        const a = new Array(0, -3);
         await myConnect.upload("a", DT.Pair(DT.Long(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array(0, -3);
+        const re = await myConnect.run("a");
+        const expected = new Array(0, -3);
         assert.deepEqual(re, expected);
       });
 
       it("upload float pair", async function () {
-        let a = new Array(0, -3);
+        const a = new Array(0, -3);
         await myConnect.upload("a", DT.Pair(DT.Float(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array(0, -3);
+        const re = await myConnect.run("a");
+        const expected = new Array(0, -3);
         assert.deepEqual(re, expected);
       });
 
       it("upload double pair", async function () {
-        let a = new Array(0, -3.3);
+        const a = new Array(0, -3.3);
         await myConnect.upload("a", DT.Pair(DT.Double(a)));
-        let re = await myConnect.run("a");
-        let expected = new Array(0, -3.3);
+        const re = await myConnect.run("a");
+        const expected = new Array(0, -3.3);
         assert.deepEqual(re, expected);
       });
 
       it("upload date pair", async function () {
-        let a = new Array("1961-01-01", "1960-02-02");
+        const a = new Array("1961-01-01", "1960-02-02");
         await myConnect.upload("a", DT.Pair(DT.Date(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["year"], 1961);
         assert.equal(re[0].get()["month"], 1);
         assert.equal(re[0].get()["day"], 1);
@@ -923,9 +925,9 @@ async function test_upload() {
       });
 
       it("upload month pair", async function () {
-        let a = new Array("1961-01", "1960-02");
+        const a = new Array("1961-01", "1960-02");
         await myConnect.upload("a", DT.Pair(DT.Month(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["year"], 1961);
         assert.equal(re[0].get()["month"], 1);
         assert.equal(re[1].get()["year"], 1960);
@@ -933,9 +935,9 @@ async function test_upload() {
       });
 
       it("upload time pair", async function () {
-        let a = new Array("13:30:10.008");
+        const a = new Array("13:30:10.008");
         await myConnect.upload("a", DT.Pair(DT.Time(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["hour"], 13);
         assert.equal(re[0].get()["minute"], 30);
         assert.equal(re[0].get()["second"], 10);
@@ -943,26 +945,26 @@ async function test_upload() {
       });
 
       it("upload minute pair", async function () {
-        let a = new Array("13:30");
+        const a = new Array("13:30");
         await myConnect.upload("a", DT.Pair(DT.Minute(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["hour"], 13);
         assert.equal(re[0].get()["minute"], 30);
       });
 
       it("upload second pair", async function () {
-        let a = new Array("13:30:10");
+        const a = new Array("13:30:10");
         await myConnect.upload("a", DT.Pair(DT.Second(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["hour"], 13);
         assert.equal(re[0].get()["minute"], 30);
         assert.equal(re[0].get()["second"], 10);
       });
 
       it("upload datetime pair", async function () {
-        let a = new Array("2012-06-13 13:30:10");
+        const a = new Array("2012-06-13 13:30:10");
         await myConnect.upload("a", DT.Pair(DT.DateTime(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["year"], 2012);
         assert.equal(re[0].get()["month"], 6);
         assert.equal(re[0].get()["day"], 13);
@@ -972,9 +974,9 @@ async function test_upload() {
       });
 
       it("upload timestamp pair", async function () {
-        let a = new Array("2012-06-13 13:30:10.008");
+        const a = new Array("2012-06-13 13:30:10.008");
         await myConnect.upload("a", DT.Pair(DT.TimeStamp(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["date"]["year"], 2012);
         assert.equal(re[0].get()["date"]["month"], 6);
         assert.equal(re[0].get()["date"]["day"], 13);
@@ -985,9 +987,9 @@ async function test_upload() {
       });
 
       it("upload nanotime pair", async function () {
-        let a = new Array("13:30:10.008007006");
+        const a = new Array("13:30:10.008007006");
         await myConnect.upload("a", DT.Pair(DT.NanoTime(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["hour"], 13);
         assert.equal(re[0].get()["minute"], 30);
         assert.equal(re[0].get()["second"], 10);
@@ -995,9 +997,9 @@ async function test_upload() {
       });
 
       it("upload nanotimestamp pair", async function () {
-        let a = new Array("2012-06-01 13:30:10.008007006");
+        const a = new Array("2012-06-01 13:30:10.008007006");
         await myConnect.upload("a", DT.Pair(DT.NanoTimeStamp(a)));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].get()["date"]["year"], 2012);
         assert.equal(re[0].get()["date"]["month"], 6);
         assert.equal(re[0].get()["date"]["day"], 1);
@@ -1008,7 +1010,7 @@ async function test_upload() {
       });
       it("upload null matrix", async function () {
         await myConnect.upload("a", DT.Matrix({ data: [] }));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re, null);
       });
 
@@ -1022,26 +1024,26 @@ async function test_upload() {
             ]),
           })
         );
-        let re = await myConnect.run("a");
-        let expected1 = new Array(1, 2, 3);
-        let expected2 = new Array(4, 5, 6);
+        const re = await myConnect.run("a");
+        const expected1 = new Array(1, 2, 3);
+        const expected2 = new Array(4, 5, 6);
         assert.deepEqual(re["data"][0], expected1);
         assert.deepEqual(re["data"][1], expected2);
       });
 
       it("upload int one column matrix", async function () {
         await myConnect.upload("a", DT.Matrix(DT.Int([[1, 2, 3]])));
-        let re = await myConnect.run("a");
-        let expected1 = new Array(1, 2, 3);
+        const re = await myConnect.run("a");
+        const expected1 = new Array(1, 2, 3);
         assert.deepEqual(re[0], expected1);
       });
 
       it("upload int one row matrix", async function () {
         await myConnect.upload("a", DT.Matrix(DT.Int([[1], [2], [3]])));
-        let re = await myConnect.run("a");
-        let expected1 = [1];
-        let expected2 = [2];
-        let expected3 = [3];
+        const re = await myConnect.run("a");
+        const expected1 = [1];
+        const expected2 = [2];
+        const expected3 = [3];
         assert.deepEqual(re[0], expected1);
         assert.deepEqual(re[1], expected2);
         assert.deepEqual(re[2], expected3);
@@ -1059,9 +1061,9 @@ async function test_upload() {
             ]),
           })
         );
-        let re = await myConnect.run("a");
-        let expected1 = new Array(1, 2, 3);
-        let expected2 = new Array(4, 5, 6);
+        const re = await myConnect.run("a");
+        const expected1 = new Array(1, 2, 3);
+        const expected2 = new Array(4, 5, 6);
         assert.deepEqual(re["colnames"], ["r1", "r2", "r3"]);
         assert.deepEqual(re["rownames"], ["col1", "col2"]);
         assert.deepEqual(re.data[0], expected1);
@@ -1070,8 +1072,8 @@ async function test_upload() {
 
       it("upload int all null matrix", async function () {
         await myConnect.upload("a", DT.Matrix({ type: "int", data: [] }));
-        let re = await myConnect.run("a");
-        let expected1 = new Array();
+        const re = await myConnect.run("a");
+        const expected1 = new Array();
         assert.deepEqual(re.data, expected1);
       });
 
@@ -1085,9 +1087,9 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
-        let expected1 = new Array("AA", "BB");
-        let expected2 = new Array("CC", "DD");
+        const re = await myConnect.run("a");
+        const expected1 = new Array("AA", "BB");
+        const expected2 = new Array("CC", "DD");
         assert.deepEqual(re[0], expected1);
         assert.deepEqual(re[1], expected2);
       });
@@ -1097,9 +1099,9 @@ async function test_upload() {
           "a",
           DT.Matrix(DT.Bool([[true, false], [false]]))
         );
-        let re = await myConnect.run("a");
-        let expected1 = new Array(true, false);
-        let expected2 = new Array(false);
+        const re = await myConnect.run("a");
+        const expected1 = new Array(true, false);
+        const expected2 = new Array(false);
         assert.deepEqual(re[0], expected1);
         assert.deepEqual(re[1], expected2);
       });
@@ -1114,33 +1116,33 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re[0], ["a", "b"]);
         assert.deepEqual(re[1], ["c", null]);
       });
 
       it("upload float matrix", async function () {
         await myConnect.upload("a", DT.Matrix(DT.Float([[1, 2], [0]])));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re[0], [1, 2]);
         assert.deepEqual(re[1], [0]);
       });
 
       it("upload double matrix", async function () {
         await myConnect.upload("a", DT.Matrix(DT.Double([[1, 2], [0]])));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re[0], [1, 2]);
         assert.deepEqual(re[1], [0]);
       });
       it("upload short matrix", async function () {
         await myConnect.upload("a", DT.Matrix(DT.Short([[1, 2], [0]])));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re[0], [1, 2]);
         assert.deepEqual(re[1], [0]);
       });
       it("upload long matrix", async function () {
         await myConnect.upload("a", DT.Matrix(DT.Long([[1, 2], [0]])));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re[0], [1, 2]);
         assert.deepEqual(re[1], [0]);
       });
@@ -1155,7 +1157,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].toString(), "1973-2-1,1960-1-1,1970-1-3");
         assert.equal(re[1].toString(), "1973-2-2,1960-1-2,1970-2-3");
       });
@@ -1170,7 +1172,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].toString(), "1973-2,1960-1");
         assert.equal(re[1].toString(), "1973-3,1960-4");
       });
@@ -1185,7 +1187,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(
           re[0].toString(),
           "13:30:10.9000000ns,12:30:10.10000000ns"
@@ -1206,7 +1208,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         console.log(re);
         assert.equal(re[0].toString(), "13:10,13:11");
         assert.equal(re[1].toString(), "13:12,13:13");
@@ -1222,7 +1224,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].toString(), "13:30:10,13:30:11");
         assert.equal(re[1].toString(), "13:30:12,13:30:13");
       });
@@ -1237,7 +1239,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re[0].toString(), "2012-6-13 13:30:10,2012-6-13 13:30:11");
         assert.equal(re[1].toString(), "2012-6-13 13:30:12,2012-6-13 13:30:13");
       });
@@ -1252,7 +1254,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(
           re[0].toString(),
           "2012-6-13 13:30:10.9000000ns,2012-6-13 13:30:11.8000000ns"
@@ -1272,7 +1274,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         console.log(re);
         assert.equal(re[0].toString(), "13:30:10.8007006ns,13:30:10.8007007ns");
         assert.equal(re[1].toString(), "13:30:10.8007007ns,13:30:10.8007006ns");
@@ -1294,7 +1296,7 @@ async function test_upload() {
             ])
           )
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         console.log(re);
         assert.equal(
           re[0].toString(),
@@ -1315,7 +1317,7 @@ async function test_upload() {
             data: [DT.Int([1, 2, 3]), DT.Symbol(["xa", "ya", "za"])],
           })
         );
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.deepEqual(re["colnames"], ["id", "val"]);
         assert.deepEqual(re["data"][0], [1, 2, 3]);
         assert.deepEqual(re["data"][1], ["xa", "ya", "za"]);
@@ -1323,7 +1325,7 @@ async function test_upload() {
 
       it("upload empty table", async function () {
         await myConnect.upload("a", DT.Table({ colnames: ["id", "val"] }));
-        let re = await myConnect.run("a");
+        const re = await myConnect.run("a");
         assert.equal(re, null);
       });
 
@@ -1334,9 +1336,9 @@ async function test_upload() {
           DT.Int([0, 2, 1]),
           DT.Int(1)
         );
-        let re = await myConnect.run("a");
-        let re1 = await myConnect.run("b");
-        let re2 = await myConnect.run("c");
+        const re = await myConnect.run("a");
+        const re1 = await myConnect.run("b");
+        const re2 = await myConnect.run("c");
         assert.equal(re, null);
         assert.deepEqual(re1, [0, 2, 1]);
         assert.equal(re2, 1);

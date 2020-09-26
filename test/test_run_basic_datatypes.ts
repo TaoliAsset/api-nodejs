@@ -2,10 +2,10 @@ import DBconnection from "../src/DBconnection";
 import assert from "assert";
 
 async function test_run() {
-  let myConnect = new DBconnection();
+  const myConnect = new DBconnection();
 
   before(async function () {
-    let config = require("./setup/settings");
+    const config = require("./setup/settings");
     await myConnect.connect(config.HOST, config.PORT);
   });
 
@@ -352,7 +352,7 @@ async function test_run() {
 
       it("run bool vector", async function () {
         const re = await myConnect.run("[true, false, false]");
-        let expected = new Array(true, false, false);
+        const expected = new Array(true, false, false);
         assert.deepEqual(re, expected);
       });
 
@@ -363,13 +363,13 @@ async function test_run() {
 
       it("run bool some null vector", async function () {
         const re = await myConnect.run("[true, false, bool()]");
-        let expected = new Array(true, false, null);
+        const expected = new Array(true, false, null);
         assert.deepEqual(re, expected);
       });
 
       it("run char vector", async function () {
         const re = await myConnect.run("['a', 'b', 'c']");
-        let expected = new Array("a", "b", "c");
+        const expected = new Array("a", "b", "c");
         assert.deepEqual(re, expected);
       });
 
@@ -380,13 +380,13 @@ async function test_run() {
 
       it("run char some null vector", async function () {
         const re = await myConnect.run("['a', 'b', char()]");
-        let expected = new Array("a", "b", null);
+        const expected = new Array("a", "b", null);
         assert.deepEqual(re, expected);
       });
 
       it("run int vector", async function () {
         const re = await myConnect.run("[-2, 0, 5]");
-        let expected = new Array(-2, 0, 5);
+        const expected = new Array(-2, 0, 5);
         assert.deepEqual(re, expected);
       });
 
@@ -397,13 +397,13 @@ async function test_run() {
 
       it("run int some null vector", async function () {
         const re = await myConnect.run("[-2, 0, int()]");
-        let expected = new Array(-2, 0, null);
+        const expected = new Array(-2, 0, null);
         assert.deepEqual(re, expected);
       });
 
       it("run short vector", async function () {
         const re = await myConnect.run("[-2h, 0h, 5h]");
-        let expected = new Array(-2, 0, 5);
+        const expected = new Array(-2, 0, 5);
         assert.deepEqual(re, expected);
       });
 
@@ -414,13 +414,13 @@ async function test_run() {
 
       it("run short some null vector", async function () {
         const re = await myConnect.run("[-2h, 0h, short()]");
-        let expected = new Array(-2, 0, null);
+        const expected = new Array(-2, 0, null);
         assert.deepEqual(re, expected);
       });
 
       it("run long vector", async function () {
         const re = await myConnect.run("[-2l, 0l, 5l]");
-        let expected = new Array(-2, 0, 5);
+        const expected = new Array(-2, 0, 5);
         assert.deepEqual(re, expected);
       });
 
@@ -431,7 +431,7 @@ async function test_run() {
 
       it("run long some null vector", async function () {
         const re = await myConnect.run("[-2l, 0l, long()]");
-        let expected = new Array(-2, 0, null);
+        const expected = new Array(-2, 0, null);
         assert.deepEqual(re, expected);
       });
 
@@ -829,7 +829,7 @@ async function test_run() {
 
       it("run double vector", async function () {
         const re = await myConnect.run("[2.1, 2.2, -2.5]");
-        let expected = new Array(2.1, 2.2, -2.5);
+        const expected = new Array(2.1, 2.2, -2.5);
         assert.deepEqual(re, expected);
       });
 
@@ -840,13 +840,13 @@ async function test_run() {
 
       it("run double some null vector", async function () {
         const re = await myConnect.run("[2.1, 2.2, double()]");
-        let expected = new Array(2.1, 2.2, null);
+        const expected = new Array(2.1, 2.2, null);
         assert.deepEqual(re, expected);
       });
 
       it("run symbol vector", async function () {
         const re = await myConnect.run("symbol(['AA','BB','CC'])");
-        let expected = new Array("AA", "BB", "CC");
+        const expected = new Array("AA", "BB", "CC");
         assert.deepEqual(re, expected);
       });
 
@@ -857,13 +857,13 @@ async function test_run() {
 
       it("run symbol some null vector", async function () {
         const re = await myConnect.run("symbol(['AA','BB',string()])");
-        let expected = new Array("AA", "BB", "");
+        const expected = new Array("AA", "BB", "");
         assert.deepEqual(re, expected);
       });
 
       it("run string vector", async function () {
         const re = await myConnect.run("['AA','BB','CC']");
-        let expected = new Array("AA", "BB", "CC");
+        const expected = new Array("AA", "BB", "CC");
         assert.deepEqual(re, expected);
       });
 
@@ -874,7 +874,7 @@ async function test_run() {
 
       it("run string some null vector", async function () {
         const re = await myConnect.run("['AA','BB',string()]");
-        let expected = new Array("AA", "BB", "");
+        const expected = new Array("AA", "BB", "");
         assert.deepEqual(re, expected);
       });
 
@@ -907,38 +907,38 @@ async function test_run() {
 
       it("run empty array", async function () {
         const re = await myConnect.run("array(INT, 0, 10)");
-        let expected = [];
+        const expected = [];
         assert.deepEqual(re, expected);
       });
 
       it("run int pair", async function () {
         const re = await myConnect.run("1:3");
-        let expected = new Array(1, 3);
+        const expected = new Array(1, 3);
         assert.deepEqual(re, expected);
       });
 
       it("run string pair", async function () {
         const re = await myConnect.run("'hello':'world'");
-        let expected = new Array("hello", "world");
+        const expected = new Array("hello", "world");
         assert.deepEqual(re, expected);
       });
 
       it("run empty tuple", async function () {
         const re = await myConnect.run("x=();x");
-        let expected = [];
+        const expected = [];
         assert.deepEqual(re, expected);
       });
 
       it("run tuple element scalar", async function () {
         const re = await myConnect.run("(1, 'AA', 2.5)");
-        let expected = new Array(1, "AA", 2.5);
+        const expected = new Array(1, "AA", 2.5);
         assert.deepEqual(re, expected);
       });
 
       it("run tuple element vector", async function () {
         const re = await myConnect.run("[1 2 3, 4 5 6, 7]");
-        let expected1 = new Array(1, 2, 3);
-        let expected2 = new Array(4, 5, 6);
+        const expected1 = new Array(1, 2, 3);
+        const expected2 = new Array(4, 5, 6);
         assert.deepEqual(re[0], expected1);
         assert.deepEqual(re[1], expected2);
         assert.equal(re[2], 7);
@@ -946,23 +946,23 @@ async function test_run() {
 
       it("run int matrix", async function () {
         const re = await myConnect.run("1..6$3:2");
-        let expected1 = new Array(1, 2, 3);
-        let expected2 = new Array(4, 5, 6);
+        const expected1 = new Array(1, 2, 3);
+        const expected2 = new Array(4, 5, 6);
         assert.deepEqual(re.data[0], expected1);
         assert.deepEqual(re.data[1], expected2);
       });
 
       it("run int one column matrix", async function () {
         const re = await myConnect.run("matrix([1, 2, 3])");
-        let expected1 = new Array(1, 2, 3);
+        const expected1 = new Array(1, 2, 3);
         assert.deepEqual(re.data[0], expected1);
       });
 
       it("run int one row matrix", async function () {
         const re = await myConnect.run("matrix([[1], [2], [3]])");
-        let expected1 = [1];
-        let expected2 = [2];
-        let expected3 = [3];
+        const expected1 = [1];
+        const expected2 = [2];
+        const expected3 = [3];
         assert.deepEqual(re.data[0], expected1);
         assert.deepEqual(re.data[1], expected2);
         assert.deepEqual(re.data[2], expected3);
@@ -972,9 +972,9 @@ async function test_run() {
         const re = await myConnect.run(
           "m=matrix(1 2 3, 4 5 6);m.rename!(`id`val);m"
         );
-        let colNames = new Array("id", "val");
-        let expected1 = new Array(1, 2, 3);
-        let expected2 = new Array(4, 5, 6);
+        const colNames = new Array("id", "val");
+        const expected1 = new Array(1, 2, 3);
+        const expected2 = new Array(4, 5, 6);
         assert.deepEqual(re.colnames, colNames);
         assert.deepEqual(re.data[0], expected1);
         assert.deepEqual(re.data[1], expected2);
@@ -984,10 +984,10 @@ async function test_run() {
         const re = await myConnect.run(
           "m=matrix(1 2 3, 4 5 6);m.rename!(`a`b`c,`id`val);m"
         );
-        let rowNames = new Array("a", "b", "c");
-        let colNames = new Array("id", "val");
-        let expected1 = new Array(1, 2, 3);
-        let expected2 = new Array(4, 5, 6);
+        const rowNames = new Array("a", "b", "c");
+        const colNames = new Array("id", "val");
+        const expected1 = new Array(1, 2, 3);
+        const expected2 = new Array(4, 5, 6);
         assert.deepEqual(re.rownames, rowNames);
         assert.deepEqual(re.colnames, colNames);
         assert.deepEqual(re.data[0], expected1);
@@ -1003,21 +1003,21 @@ async function test_run() {
 
       it("run symbol matrix", async function () {
         const re = await myConnect.run("symbol(['AA', 'BB', 'CC', 'DD'])$2:2");
-        let expected1 = new Array("AA", "BB");
-        let expected2 = new Array("CC", "DD");
+        const expected1 = new Array("AA", "BB");
+        const expected2 = new Array("CC", "DD");
         assert.deepEqual(re.data[0], expected1);
         assert.deepEqual(re.data[1], expected2);
       });
 
       it("run int set", async function () {
         const re = await myConnect.run("set(2 3 5 6)");
-        let expected = new Set([2, 3, 5, 6]);
+        const expected = new Set([2, 3, 5, 6]);
         assert.deepEqual(re, expected);
       });
 
       it("run int int dictionary", async function () {
         const re = await myConnect.run("dict(1 2 3, 4 5 6)");
-        let expected = new Map([
+        const expected = new Map([
           [1, 4],
           [2, 5],
           [3, 6],
@@ -1027,7 +1027,7 @@ async function test_run() {
 
       it("run int string dictionary", async function () {
         const re = await myConnect.run("dict(1 2 3, `MSFT`GOOG`IBM)");
-        let expected = new Map([
+        const expected = new Map([
           [1, "MSFT"],
           [2, "GOOG"],
           [3, "IBM"],
@@ -1037,13 +1037,13 @@ async function test_run() {
 
       it("run int int null dictionary", async function () {
         const re = await myConnect.run("dict(INT, INT)");
-        let expected = new Map([]);
+        const expected = new Map([]);
         assert.deepEqual(re, expected);
       });
 
       it("run int any dictionary", async function () {
         const re = await myConnect.run("dict(1 2 3, [4 5 6, 1 2, 6])");
-        let expected = new Map([
+        const expected = new Map([
           [1, [4, 5, 6]],
           [2, [1, 2]],
           [3, 6],
@@ -1053,7 +1053,7 @@ async function test_run() {
 
       it("run string any dictionary", async function () {
         const re = await myConnect.run("dict(`a`b`c, [4 5 6, 1 2, 6])");
-        let expected = new Map([
+        const expected = new Map([
           ["a", [4, 5, 6]],
           ["b", [1, 2]],
           ["c", 6],
@@ -1065,15 +1065,19 @@ async function test_run() {
         const re = await myConnect.run(
           "table(1 2 3 as a, `x`y`z as b, 10.8 7.6 3.5 as c)"
         );
-        let colNames = new Array("a", "b", "c");
-        let expected = new Array([1, 2, 3], ["x", "y", "z"], [10.8, 7.6, 3.5]);
+        const colNames = new Array("a", "b", "c");
+        const expected = new Array(
+          [1, 2, 3],
+          ["x", "y", "z"],
+          [10.8, 7.6, 3.5]
+        );
         assert.deepEqual(re.colnames, colNames);
         assert.deepEqual(re.data, expected);
       });
 
       it("run empty table", async function () {
         const re = await myConnect.run("table(1:0, `id`val, [INT, INT])");
-        let colNames = new Array("id", "val");
+        const colNames = new Array("id", "val");
         assert.deepEqual(re.colnames, colNames);
       });
     });

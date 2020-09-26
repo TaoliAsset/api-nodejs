@@ -22,15 +22,15 @@ class BufferRe {
     this.blockSize = size;
   }
   __alloc(len) {
-    let buf = Util.allocBuf(0, len, this.blockSize);
+    const buf = Util.allocBuf(0, len, this.blockSize);
     this.total += buf.length;
     this.bufs[this.length++] = buf;
   }
   write(chunk) {
     if (chunk.length + this.offset > this.total)
       this.__alloc(chunk.length + this.offset - this.total);
-    let i = this.offseti;
-    let len = this.bufs[i].length - (this.offset - this.offsetp);
+    const i = this.offseti;
+    const len = this.bufs[i].length - (this.offset - this.offsetp);
     if (len > chunk.length) {
       chunk.copy(this.bufs[i], this.bufs[i].length - len);
       this.offset += chunk.length;
@@ -40,7 +40,7 @@ class BufferRe {
     this.offset += len;
     this.offsetp = this.offset;
     ++this.offseti;
-    let total = chunk.length - len;
+    const total = chunk.length - len;
     for (++i; i < this.length && total > 0; i++) {
       if (this.bufs[i].length > total) {
         chunk.copy(this.bufs[i], 0, len);
@@ -59,17 +59,17 @@ class BufferRe {
   read(start, end) {
     if (start >= this.offset) return this.readAll();
     if (end >= this.offset) end = this.offset;
-    let buf = Buffer.alloc(end - start);
-    let s = 0;
-    let i = 0;
+    const buf = Buffer.alloc(end - start);
+    const s = 0;
+    const i = 0;
     for (; i < this.length; i++) {
       s += this.bufs[i].length;
       if (s > start) break;
     }
-    let len = s - start;
-    let ss = start;
+    const len = s - start;
+    const ss = start;
     for (
-      let j = this.bufs[i].length - len;
+      const j = this.bufs[i].length - len;
       j < this.bufs[i].length && ss < end;
       j++
     ) {
@@ -77,7 +77,7 @@ class BufferRe {
       ++ss;
     }
     for (++i; i < this.length && ss < end; i++) {
-      for (let j = 0; j < this.bufs[i].length && ss < end; j++) {
+      for (const j = 0; j < this.bufs[i].length && ss < end; j++) {
         buf[ss - start] = this.bufs[i][j];
         ++ss;
       }
@@ -85,10 +85,10 @@ class BufferRe {
     return buf;
   }
   readAll() {
-    let s = 0;
-    let buf = Buffer.alloc(this.offset);
-    for (let i = 0; i < this.length && s < this.offset; i++) {
-      for (let j = 0; j < this.bufs[i].length && s < this.offset; j++) {
+    const s = 0;
+    const buf = Buffer.alloc(this.offset);
+    for (const i = 0; i < this.length && s < this.offset; i++) {
+      for (const j = 0; j < this.bufs[i].length && s < this.offset; j++) {
         buf[s] = this.bufs[i][j];
         ++s;
       }

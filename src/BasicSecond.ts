@@ -12,7 +12,7 @@ class BasicSecond extends TimeObj {
         this.value = value;
         this.timeObj = this.parseInt(value);
       } else if (typeof value === "string") {
-        let { hour, minute, second } = Util.timeFromStr(value);
+        const { hour, minute, second } = Util.timeFromStr(value);
         this.timeObj = { hour: hour, minute: minute, second: second };
         this.value = this.parseObj(this.timeObj);
       } else if (typeof value === "object") {
@@ -25,7 +25,7 @@ class BasicSecond extends TimeObj {
   }
 
   parseInt(value) {
-    let hour, minute, second;
+    const hour, minute, second;
     hour = Math.floor(value / 3600);
     minute = Math.floor((value % 3600) / 60);
     second = value % 60;
@@ -40,7 +40,7 @@ class BasicSecond extends TimeObj {
   }
 
   parseObj(secondObj) {
-    let { hour, minute, second } = secondObj;
+    const { hour, minute, second } = secondObj;
     return hour * 3600 + minute * 60 + second;
   }
 
@@ -49,7 +49,7 @@ class BasicSecond extends TimeObj {
   }
 
   tobytes() {
-    let buf = Buffer.alloc(4);
+    const buf = Buffer.alloc(4);
     if (this.isSmall) buf.writeInt32LE(this.value);
     else buf.writeInt32BE(this.value);
     return buf;

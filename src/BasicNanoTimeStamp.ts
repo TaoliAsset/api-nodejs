@@ -5,8 +5,8 @@ import BasicDate from "./BasicDate";
 import BasicNanoTime from "./BasicNanoTime";
 import TimeObj from "./TimeObj";
 
-let basicDate = new BasicDate(null);
-let basicNanoTime = new BasicNanoTime(null);
+const basicDate = new BasicDate(null);
+const basicNanoTime = new BasicNanoTime(null);
 
 class BasicNanoTimeStamp extends TimeObj {
   constructor(value) {
@@ -17,7 +17,7 @@ class BasicNanoTimeStamp extends TimeObj {
         this.value = value;
         this.timeObj = this.parseLong(value);
       } else if (typeof value === "string") {
-        let { year, month, day, hour, minute, second, nS } = Util.timeFromStr(
+        const { year, month, day, hour, minute, second, nS } = Util.timeFromStr(
           value
         );
         this.timeObj = {
@@ -42,12 +42,12 @@ class BasicNanoTimeStamp extends TimeObj {
 
   parseLong(value) {
     const nsperday = 86400000000000n;
-    let bigdays = value / nsperday;
-    let bignanos = value % nsperday;
+    const bigdays = value / nsperday;
+    const bignanos = value % nsperday;
     if (value < 0n && bignanos !== 0n) bigdays -= 1n;
-    let date = basicDate.parseInt(Number(bigdays));
+    const date = basicDate.parseInt(Number(bigdays));
     if (bignanos < 0n) bignanos += nsperday;
-    let time = basicNanoTime.parseLong(bignanos);
+    const time = basicNanoTime.parseLong(bignanos);
 
     return {
       date: date,
@@ -57,9 +57,9 @@ class BasicNanoTimeStamp extends TimeObj {
 
   parseObj(nanoTimeStampObj) {
     const nsperday = 86400000000000n;
-    let { date, time } = nanoTimeStampObj;
-    let days = basicDate.parseObj(date);
-    let nanos = basicNanoTime.parseObj(time);
+    const { date, time } = nanoTimeStampObj;
+    const days = basicDate.parseObj(date);
+    const nanos = basicNanoTime.parseObj(time);
     return BigInt(days) * nsperday + nanos;
   }
 
@@ -68,7 +68,7 @@ class BasicNanoTimeStamp extends TimeObj {
   }
 
   tobytes() {
-    let buf = Buffer.alloc(8);
+    const buf = Buffer.alloc(8);
     if (this.isSmall) buf.writeBigInt64LE(this.value);
     else buf.writeBigInt64BE(this.value);
     return buf;

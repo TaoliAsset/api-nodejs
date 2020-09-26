@@ -8,7 +8,7 @@ class BasicByte extends BasicScalar {
     this.value = value ?? constants.byteMin;
   }
   tobytes() {
-    let buf = Buffer.alloc(1);
+    const buf = Buffer.alloc(1);
     buf.writeInt8(this.value);
     return buf;
   }

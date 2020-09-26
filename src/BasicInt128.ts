@@ -30,7 +30,7 @@ class BasicInt128 extends BasicScalar {
     super();
     if (value == null) this.high = this.low = 0n;
     else {
-      let high, low;
+      const high, low;
       if (typeof value === "string") ({ high, low } = this.fromStr(value));
       else ({ high = 0n, low = 0n } = value);
       this.high = high;
@@ -48,15 +48,15 @@ class BasicInt128 extends BasicScalar {
 
   fromStr(str) {
     str = str.toLowerCase();
-    let high = 0n,
+    const high = 0n,
       low = 0n;
-    let i;
-    // let hexcv = this.hexcv;
-    // let highbuf = Buffer.alloc(8);
-    // let lowbuf = Buffer.alloc(8);
-    let buf = Buffer.alloc(16);
+    const i;
+    // const hexcv = this.hexcv;
+    // const highbuf = Buffer.alloc(8);
+    // const lowbuf = Buffer.alloc(8);
+    const buf = Buffer.alloc(16);
     if (str.length < 32) str += int128Z.substring(0, 32 - str.length);
-    let len = 16;
+    const len = 16;
     for (i = 0; i < 8 && i < len; i++) {
       if (
         hexcv.get(str[i * 2]) === undefined ||
@@ -99,14 +99,14 @@ class BasicInt128 extends BasicScalar {
   }
 
   tobufBE() {
-    let buf = Buffer.alloc(16);
+    const buf = Buffer.alloc(16);
     buf.writeBigInt64BE(this.high);
     buf.writeBigInt64BE(this.low, 8);
     return buf;
   }
 
   tobytes() {
-    let buf = Buffer.alloc(16);
+    const buf = Buffer.alloc(16);
     if (this.isSmall) {
       buf.writeBigInt64LE(this.low);
       buf.writeBigInt64LE(this.high, 8);

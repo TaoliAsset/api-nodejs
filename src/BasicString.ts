@@ -9,8 +9,8 @@ class BasicString extends BasicScalar {
   }
   tobytes() {
     if (this.value == null) return Buffer.from([0, 0, constants.nullV]);
-    let str = this.value;
-    let buf = Buffer.alloc(str.length + 1);
+    const str = this.value;
+    const buf = Buffer.alloc(str.length + 1);
     if (!this.isSmall) str = str.split("").reverse().join("");
     buf.write(str);
     return buf;

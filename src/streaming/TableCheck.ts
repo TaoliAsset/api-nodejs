@@ -36,7 +36,7 @@ class TableCheck {
     return this.isful;
   }
   check(data) {
-    let cbuf = data;
+    const cbuf = data;
     while (true) {
       if (this.state === 0) {
         if (cbuf.length < this.hlen) return cbuf;
@@ -50,7 +50,7 @@ class TableCheck {
         if (cbuf.length === 0) break;
       } else if (this.state === 1) {
         // table name;
-        let j;
+        const j;
         for (j = 0; j < cbuf.length && cbuf[j] !== 0; j++);
         if (j === cbuf.length) return cbuf;
         j++;
@@ -60,8 +60,8 @@ class TableCheck {
         if (cbuf.length === 0) break;
       } else if (this.state === 2) {
         // colnames;
-        for (let i = this.colpos; i < this.ncol; i++) {
-          let j = 0;
+        for (const i = this.colpos; i < this.ncol; i++) {
+          const j = 0;
           for (; j < cbuf.length && cbuf[j] !== 0; j++);
           if (j === cbuf.length) {
             this.colpos = i;
@@ -77,14 +77,14 @@ class TableCheck {
         // cols
         if (this.arr === null) {
           this.arr = new Array(this.ncol);
-          for (let i = 0; i < this.ncol; i++) this.arr[i] = null;
+          for (const i = 0; i < this.ncol; i++) this.arr[i] = null;
         }
-        for (let i = this.pos; i < this.ncol; i++) {
+        for (const i = this.pos; i < this.ncol; i++) {
           if (this.arr[i] === null)
             this.arr[i] = new VectorCheck().init(this.isSmall);
-          let vc = this.arr[i];
-          let offset = vc.offset;
-          let re = vc.check(cbuf);
+          const vc = this.arr[i];
+          const offset = vc.offset;
+          const re = vc.check(cbuf);
           this.offset += vc.offset - offset;
           if (vc.isFull()) {
             // this.offset += vc.offset;

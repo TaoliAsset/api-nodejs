@@ -6,9 +6,9 @@ class BasicIpAddr extends BasicInt128 {
     if (typeof value === "string") {
       const re = /^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$/;
       if (re.test(value)) {
-        let low = 0;
-        let ips = value.split(/\./);
-        for (let i = 0; i < ips.length; i++) low = low * 256 + Number(ips[i]);
+        const low = 0;
+        const ips = value.split(/\./);
+        for (const i = 0; i < ips.length; i++) low = low * 256 + Number(ips[i]);
         super({ hig: 0n, low: BigInt(low) });
       } else {
         super(value);

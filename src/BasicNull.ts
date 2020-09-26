@@ -91,7 +91,7 @@ class BasicNull extends BasicScalar {
     else if (this.dtype === 15) return new BasicFloat(floatMin).tobytes();
     else if (this.dtype === 16) return new BasicDouble(doubleMin).tobytes();
     else {
-      let buf = Buffer.alloc(Util.dtypelen(this.dtype)); // 0 buf
+      const buf = Buffer.alloc(Util.dtypelen(this.dtype)); // 0 buf
       return buf;
     }
   }

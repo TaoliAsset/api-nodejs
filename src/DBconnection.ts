@@ -68,17 +68,17 @@ class DBconnection {
   }
 
   updateID() {
-    let endPos = this.response.indexOf(32); //' '
+    const endPos = this.response.indexOf(32); //' '
     this.sessionID = this.response.slice(0, endPos).toString();
   }
 
   readAll(timeout = 500) {
     return new Promise(async (resolve, reject) => {
-      let error = null;
+      const error = null;
       this.socket.setTimeout(timeout);
       while (true) {
         try {
-          let chunk = await this.socket.read();
+          const chunk = await this.socket.read();
           this.buffer.write(chunk);
         } catch (e) {
           if (e instanceof TimeoutError) {
@@ -93,7 +93,7 @@ class DBconnection {
       if (error !== null) {
         reject(error);
       } else {
-        let rbuf = this.buffer.readAll();
+        const rbuf = this.buffer.readAll();
         this.buffer.reset();
         if (infolevel >= 2) console.log(`read all ${rbuf.length} bytes`);
         await this.reconnect();
@@ -106,8 +106,8 @@ class DBconnection {
     if (typeof script != "string")
       throw Error("The script should be a string.");
     // console.log(script)
-    let len = script.length + 7;
-    let msg =
+    const len = script.length + 7;
+    const msg =
       "API " +
       this.sessionID +
       " " +
@@ -122,23 +122,23 @@ class DBconnection {
     this.response = await this.readAll();
     // console.log(Util.formatBytes(this.response));
     this.updateID();
-    let res = this.parseResult();
+    const res = this.parseResult();
     return res;
   }
 
   status() {
-    let endPos = this.response.indexOf(32);
-    let rest = this.response.slice(endPos + 1);
+    const endPos = this.response.indexOf(32);
+    const rest = this.response.slice(endPos + 1);
     endPos = rest.indexOf(32); //' '
     //get result number
-    let num = rest[0] - 48;
+    const num = rest[0] - 48;
     endPos = rest.indexOf(10); //'\n'
     //Little Endian: isSmall = 1
-    let isSmall = rest[endPos - 1] - 48;
+    const isSmall = rest[endPos - 1] - 48;
     rest = rest.slice(endPos + 1);
     //extract OK
     endPos = rest.indexOf(10);
-    let status = rest.slice(0, endPos).toString();
+    const status = rest.slice(0, endPos).toString();
     rest = rest.slice(endPos + 1);
     return {
       status: status,
@@ -148,7 +148,7 @@ class DBconnection {
   }
 
   parseResult() {
-    let status = this.status();
+    const status = this.status();
     this.parser.isSmall = status.isSmall === 1;
     if (infolevel >= 1)
       console.log(
@@ -158,15 +158,15 @@ class DBconnection {
           (status.isSmall ? "LE" : "BE")
       );
     //extract result
-    let res = this.parser.readPacket(status.rest);
+    const res = this.parser.readPacket(status.rest);
     //console.log(res);
     return res.value;
   }
 
   arg2bytes(args) {
-    let buf = Buffer.alloc(0);
-    for (let i = 0; i < args.length; i++) {
-      let arg = args[i];
+    const buf = Buffer.alloc(0);
+    for (const i = 0; i < args.length; i++) {
+      const arg = args[i];
       if (arg instanceof BasicScalar) {
         buf = Buffer.concat([buf, arg.hdrbytes(), arg.tobytes()]);
       } else if (arg instanceof Array) {
@@ -174,7 +174,7 @@ class DBconnection {
       } else if (arg instanceof BasicVector) {
         buf = Buffer.concat([buf, arg.tobytes()]);
       } else {
-        let tmpbuf = tUtil.scalar2BufR(arg, { header: true });
+        const tmpbuf = tUtil.scalar2BufR(arg, { header: true });
         if (tmpbuf !== null) buf = Buffer.concat([buf, tmpbuf]);
         else {
           console.log("unknow type");
@@ -186,12 +186,12 @@ class DBconnection {
   }
 
   async runFunc(funcName, ...args) {
-    let len = 13 + funcName.length;
-    let header = `API ${this.sessionID} ${len}\nfunction\n${funcName}\n${args.length}\n1`;
+    const len = 13 + funcName.length;
+    const header = `API ${this.sessionID} ${len}\nfunction\n${funcName}\n${args.length}\n1`;
     //push header
-    let buf = Buffer.from(header);
+    const buf = Buffer.from(header);
     //push data
-    let argsbuf = this.arg2bytes(args);
+    const argsbuf = this.arg2bytes(args);
     if (argsbuf === null) return;
     buf = Buffer.concat([buf, argsbuf]);
     // console.log(Util.formatBytes(buf));
@@ -200,15 +200,15 @@ class DBconnection {
     this.response = await this.socket.read();
     // console.log(Util.formatBytes(this.response))
     this.updateID();
-    let res = this.parseResult();
+    const res = this.parseResult();
     return res;
   }
 
   async upload(varnames, ...vars) {
-    let len = 13 + varnames.length;
-    let header = `API ${this.sessionID} ${len}\nvariable\n${varnames}\n${vars.length}\n1`;
-    let buf = Buffer.from(header);
-    let argsbuf = this.arg2bytes(vars);
+    const len = 13 + varnames.length;
+    const header = `API ${this.sessionID} ${len}\nvariable\n${varnames}\n${vars.length}\n1`;
+    const buf = Buffer.from(header);
+    const argsbuf = this.arg2bytes(vars);
     if (argsbuf === null) return;
     buf = Buffer.concat([buf, argsbuf]);
     // console.log(Util.formatBytes(buf));
@@ -217,7 +217,7 @@ class DBconnection {
     this.response = await this.socket.read();
     // console.log(Util.formatBytes(this.response))
     this.updateID();
-    let status = this.status();
+    const status = this.status();
     // console.log(status.rest);
     if (status.status === "OK") return true;
     else {

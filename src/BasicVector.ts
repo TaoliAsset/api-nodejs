@@ -16,9 +16,9 @@ class BasicVector {
   elementDtype() {
     if (this.value == null) return -1;
     if (this.value.length == 0) return 25;
-    let dt = -1;
-    let v = this.value;
-    for (let i = 0; i < v.length; i++) {
+    const dt = -1;
+    const v = this.value;
+    for (const i = 0; i < v.length; i++) {
       if (v[i] instanceof BasicScalar) {
         if (dt === -1) dt = v[i].dtype;
         else if (dt !== v[i].dtype) {
@@ -26,7 +26,7 @@ class BasicVector {
           break;
         }
       } else {
-        let dtr = tUtil.scalarTypeR(v[i]);
+        const dtr = tUtil.scalarTypeR(v[i]);
         if (dtr === -1) {
           dt = 25;
           break;
@@ -41,26 +41,26 @@ class BasicVector {
     return dt;
   }
   tobytes() {
-    let dt = this.dt;
+    const dt = this.dt;
     if (dt !== -1) {
-      let buf;
-      let byteArray = new Array();
-      let v = this.value;
+      const buf;
+      const byteArray = new Array();
+      const v = this.value;
       byteArray.push(dt, 1); // vector header
-      let nrowbuf = new BasicInt(v.length).tobytes();
-      let ncolbuf = new BasicInt(1).tobytes();
-      for (let e of nrowbuf) byteArray.push(e);
-      for (let e of ncolbuf) byteArray.push(e);
+      const nrowbuf = new BasicInt(v.length).tobytes();
+      const ncolbuf = new BasicInt(1).tobytes();
+      for (const e of nrowbuf) byteArray.push(e);
+      for (const e of ncolbuf) byteArray.push(e);
 
       if (dt !== 25) {
         // scalar
-        for (let i = 0; i < v.length; i++) {
+        for (const i = 0; i < v.length; i++) {
           buf = tUtil.scalar2BufR(v[i], { header: false, dt: dt });
           for (const e of buf) byteArray.push(e);
         }
       } else {
         // any
-        for (let i = 0; i < v.length; i++) {
+        for (const i = 0; i < v.length; i++) {
           if (v[i] instanceof Array) {
             buf = new BasicVector(v[i]).tobytes();
           } else {

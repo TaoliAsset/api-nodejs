@@ -9,7 +9,7 @@ class BasicMat extends BasicVector {
   constructor(value) {
     if (value == null) super(null);
     else {
-      let { rownames, colnames, type, data } = value;
+      const { rownames, colnames, type, data } = value;
       super(data);
       this.rownames = rownames;
       this.colnames = colnames;
@@ -19,13 +19,13 @@ class BasicMat extends BasicVector {
     this.dform = 3;
   }
   elementDtype() {
-    let dt = -1;
-    let data = this.value;
-    for (let j = 0; j < data.length; j++) {
-      let e;
+    const dt = -1;
+    const data = this.value;
+    for (const j = 0; j < data.length; j++) {
+      const e;
       if (!(data[j] instanceof Array)) e = data[j];
       else e = data[j][0];
-      let dtr = tUtil.scalarTypeR(e);
+      const dtr = tUtil.scalarTypeR(e);
       if (dtr === -1) {
         dt = -1;
         break;
@@ -38,8 +38,8 @@ class BasicMat extends BasicVector {
     return dt;
   }
   tobytes() {
-    let dt = this.dt;
-    let byteArray = new Array();
+    const dt = this.dt;
+    const byteArray = new Array();
     if (dt !== -1) {
       byteArray.push(dt, this.dform);
       if (this.rownames == null || this.rownames.length === 0) {
@@ -47,26 +47,26 @@ class BasicMat extends BasicVector {
           byteArray.push(0);
         else {
           byteArray.push(2);
-          let colnamebuf = new BasicVector(this.colnames).tobytes();
+          const colnamebuf = new BasicVector(this.colnames).tobytes();
           for (const e of colnamebuf) byteArray.push(e);
         }
       } else {
         if (this.colnames == null || this.colnames.length === 0) {
           byteArray.push(1);
-          let rownamebuf = new BasicVector(this.rownames).tobytes();
+          const rownamebuf = new BasicVector(this.rownames).tobytes();
           for (const e of rownamebuf) byteArray.push(e);
         } else {
           byteArray.push(3);
-          let rownamebuf = new BasicVector(this.rownames).tobytes();
-          let colnamebuf = new BasicVector(this.colnames).tobytes();
+          const rownamebuf = new BasicVector(this.rownames).tobytes();
+          const colnamebuf = new BasicVector(this.colnames).tobytes();
           for (const e of rownamebuf) byteArray.push(e);
           for (const e of colnamebuf) byteArray.push(e);
         }
       }
-      // let databuf = super.tobytes();
-      let data = this.value;
+      // const databuf = super.tobytes();
+      const data = this.value;
       byteArray.push(dt, this.dform);
-      let ncol, nrow;
+      const ncol, nrow;
       if (data.length == 0) {
         ncol = 0;
         nrow = 1;
@@ -77,13 +77,13 @@ class BasicMat extends BasicVector {
         ncol = data.length;
         nrow = data[0].length;
       }
-      let nrowbuf = new BasicInt(nrow).tobytes();
-      let ncolbuf = new BasicInt(ncol).tobytes();
-      for (let e of nrowbuf) byteArray.push(e);
-      for (let e of ncolbuf) byteArray.push(e);
+      const nrowbuf = new BasicInt(nrow).tobytes();
+      const ncolbuf = new BasicInt(ncol).tobytes();
+      for (const e of nrowbuf) byteArray.push(e);
+      for (const e of ncolbuf) byteArray.push(e);
       // databuf = databuf.slice(2);
-      for (let j = 0; j < data.length; j++) {
-        let buf;
+      for (const j = 0; j < data.length; j++) {
+        const buf;
         if (!(data[j] instanceof Array))
           buf = tUtil.scalar2BufR(data[j], { header: false, dt: dt });
         else buf = new BasicVector(data[j]).tobytes().slice(10);

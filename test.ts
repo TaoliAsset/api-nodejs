@@ -9,12 +9,12 @@ function handleMsg2(data) {
 }
 
 async function main() {
-  let DBconnection = require("./src/DBconnection"); //import API module
-  let myConnect = new DBconnection(); //create connection object
+  const DBconnection = require("./src/DBconnection"); //import API module
+  const myConnect = new DBconnection(); //create connection object
   await myConnect.connect("localhost", 8848); //set up connection
   const test = true;
   const debug = !test;
-  let result;
+  const result;
   if (test) {
     result = await myConnect.run("x=[1,3,5];y=[2,4,6];add(x,y);");
     console.log(result);

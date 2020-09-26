@@ -8,7 +8,7 @@ class BasicFloat extends BasicScalar {
     this.value = value == null ? constants.floatMin : value;
   }
   tobytes() {
-    let buf = Buffer.alloc(4);
+    const buf = Buffer.alloc(4);
     if (this.isSmall) buf.writeFloatLE(this.value);
     else buf.writeFloatBE(this.value);
     return buf;

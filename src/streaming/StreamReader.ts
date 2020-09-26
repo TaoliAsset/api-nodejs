@@ -53,7 +53,7 @@ class StreamReader {
     return this.isful;
   }
   read(data) {
-    let cbuf = data;
+    const cbuf = data;
     if (this.buf != null) cbuf = Buffer.concat([this.buf, cbuf]);
     while (true) {
       if (this.state === 0) {
@@ -64,8 +64,8 @@ class StreamReader {
         }
         this.buf = null;
         this.isSmall = cbuf[0] === 1;
-        let _x = this.readLong(cbuf.slice(1));
-        let msgid = this.readLong(cbuf.slice(9));
+        const _x = this.readLong(cbuf.slice(1));
+        const msgid = this.readLong(cbuf.slice(9));
         this.nrow2r = Number(msgid - this.msgid);
         this.msgid = msgid;
         this.offset += this.hlen;
@@ -74,7 +74,7 @@ class StreamReader {
         if (cbuf.length === 0) break;
       } else if (this.state === 1) {
         //topic
-        let j = 0;
+        const j = 0;
         for (; j < cbuf.length && cbuf[j] !== 0; j++);
         if (j === cbuf.length) {
           this.buf = cbuf;
@@ -113,9 +113,9 @@ class StreamReader {
         }
       } else if (this.state === 3) {
         if (this.tc === null) this.tc = new TableCheck().init(this.isSmall);
-        let tc = this.tc;
-        let offset = tc.offset;
-        let re = tc.check(cbuf);
+        const tc = this.tc;
+        const offset = tc.offset;
+        const re = tc.check(cbuf);
         this.offset += tc.offset - offset;
         if (tc.isFull()) {
           --this.msgid;
@@ -131,9 +131,9 @@ class StreamReader {
         }
       } else if (this.state === 4) {
         if (this.vc === null) this.vc = new VectorCheck().init(this.isSmall);
-        let vc = this.vc;
-        let offset = vc.offset;
-        let re = vc.check(cbuf);
+        const vc = this.vc;
+        const offset = vc.offset;
+        const re = vc.check(cbuf);
         this.offset += vc.offset - offset;
         if (vc.isFull()) {
           // this.offset += vc.offset;

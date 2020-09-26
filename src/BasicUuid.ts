@@ -11,7 +11,7 @@ class BasicUuid extends BasicInt128 {
 
   toString() {
     if (this.uuid !== null) return this.uuid;
-    let buf = this.buf;
+    const buf = this.buf;
     this.uuid =
       buf.slice(0, 4).toString("hex") +
       "-" +

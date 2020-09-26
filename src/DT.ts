@@ -63,8 +63,8 @@ export {
 function arrayLize(value, ftypect) {
   if (value instanceof BasicScalar) return value;
   if (!(value instanceof Array)) return ftypect(value);
-  let v = value;
-  for (let i = 0; i < v.length; i++) {
+  const v = value;
+  for (const i = 0; i < v.length; i++) {
     v[i] = arrayLize(v[i], ftypect);
   }
   return v;

@@ -40,7 +40,7 @@ class VectorCheck {
     return this.isful;
   }
   check(data) {
-    let cbuf = data;
+    const cbuf = data;
     while (true) {
       if (this.state === 0) {
         if (cbuf.length < this.hlen) return cbuf;
@@ -59,11 +59,11 @@ class VectorCheck {
           if (cbuf.length === 0) break;
         }
       } else if (this.state === 1) {
-        let dt = this.dt;
-        let len = this.nrow * this.ncol;
+        const dt = this.dt;
+        const len = this.nrow * this.ncol;
         if (dt === 18 || dt === 17) {
-          for (let i = this.pos; i < len; i++) {
-            let j = 0;
+          for (const i = this.pos; i < len; i++) {
+            const j = 0;
             for (; j < cbuf.length && cbuf[j] !== 0; j++);
             if (j === cbuf.length) {
               this.pos = i;
@@ -74,8 +74,8 @@ class VectorCheck {
             cbuf = cbuf.slice(j);
           }
         } else {
-          let s = Util.dtypelen(dt);
-          for (let i = this.pos; i < len; i++) {
+          const s = Util.dtypelen(dt);
+          for (const i = this.pos; i < len; i++) {
             if (cbuf.length < s) {
               this.pos = i;
               return cbuf;
@@ -87,25 +87,25 @@ class VectorCheck {
         this.isful = true;
         return cbuf;
       } else if (this.state === 2) {
-        let len = this.nrow * this.ncol;
+        const len = this.nrow * this.ncol;
         if (this.arr === null) {
           this.arr = new Array(len);
-          for (let i = 0; i < len; i++) this.arr[i] = null;
+          for (const i = 0; i < len; i++) this.arr[i] = null;
         }
-        for (let i = this.pos; i < len; i++) {
+        for (const i = this.pos; i < len; i++) {
           if (cbuf.length < 2) {
             this.pos = i;
             return cbuf;
           }
-          let dt = cbuf[0];
-          let df = cbuf[1];
+          const dt = cbuf[0];
+          const df = cbuf[1];
           if (df === 1) {
             if (this.arr[i] === null)
               this.arr[i] = new VectorCheck().init(this.isSmall);
             // vector
-            let vc = this.arr[i];
-            let offset = vc.offset;
-            let re = vc.check(cbuf);
+            const vc = this.arr[i];
+            const offset = vc.offset;
+            const re = vc.check(cbuf);
             this.offset += vc.offset - offset;
             if (vc.isFull()) {
               this.anyrow = vc.nrow;
@@ -118,7 +118,7 @@ class VectorCheck {
           } else {
             // scalar
             if (dt === 18 || dt === 17) {
-              let j = 2;
+              const j = 2;
               for (; j < cbuf.length && cbuf[j] !== 0; j++);
               if (j === cbuf.length) {
                 this.pos = i;
@@ -128,7 +128,7 @@ class VectorCheck {
               this.offset += j;
               cbuf = cbuf.slice(j);
             } else {
-              let len = 2 + Util.dtypelen(dt);
+              const len = 2 + Util.dtypelen(dt);
               if (cbuf.length < len) {
                 this.pos = i;
                 return cbuf;
@@ -141,9 +141,9 @@ class VectorCheck {
         this.isful = true;
         return cbuf;
       } else if (this.state === 3) {
-        let vc = this.arr[this.pos];
-        let offset = vc.offset;
-        let re = vc.check(cbuf);
+        const vc = this.arr[this.pos];
+        const offset = vc.offset;
+        const re = vc.check(cbuf);
         this.offset += vc.offset - offset;
         if (vc.isFull()) {
           // this.offset += vc.offset;

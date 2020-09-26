@@ -5,8 +5,8 @@
 ### 1. 建立连接
 
 ```js
-let DBconnection = require("./src/DBconnection");
-let conn = new DBconnection();
+const DBconnection = require("./src/DBconnection");
+const conn = new DBconnection();
 await conn.connect("localhost", 8848);
 ```
 
@@ -24,7 +24,7 @@ connect(host, port, username, password)
 建立连接之后，可以把脚本传输到服务端运行，并返回相应结果，如下所示：
 
 ```js
-let result;
+const result;
 result = await conn.run("typestr [1,2,3]");
 // 返回 FAST INT VECTOR
 result = await conn.run("dict(1 7 5,`AA`BB`CC)");

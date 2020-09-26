@@ -17,7 +17,7 @@ class Daemon {
     const cliArr = [];
     const server = createServer();
     server.on("connection", async (socket) => {
-      let cli = {
+      const cli = {
         id: cliArr.length,
         socket,
       };
@@ -25,9 +25,9 @@ class Daemon {
       cliArr.push(cli);
       this.channel.emit("join", cli.id, cli.socket);
 
-      // let byteArray = [];
-      // let buflen = 0;
-      // let buffer = Buffer.alloc(33554432); //32MB
+      // const byteArray = [];
+      // const buflen = 0;
+      // const buffer = Buffer.alloc(33554432); //32MB
       // const allocblock = 1024;
       // const timeout = 1000;
 
@@ -38,7 +38,7 @@ class Daemon {
       //         if (buffer.length < buflen)
       //             buffer = Buffer.allocUnsafe(buffer.length+Math.ceil((buflen-buffer.length)/allocblock)*allocblock);
       //         buffer.fill(0);
-      //         for (let i=0; i<buflen; i++)
+      //         for (const i=0; i<buflen; i++)
       //             buffer[i] = byteArray[i];
 
       //         this.handle(cli.id, buffer.slice(0,buflen));
@@ -63,7 +63,7 @@ class Daemon {
         console.log("client" + cli.id + " closed");
       });
     });
-    let relis = 0;
+    const relis = 0;
     server.on("error", (e) => {
       if (e.code === "EADDRINUSE") {
         if (relis === 10) {
@@ -89,18 +89,18 @@ class Daemon {
 
   handle2(id, data) {
     // console.log(data);
-    let parser = this.parser;
-    let streamReader = this.streamReader;
-    let rbuf = streamReader.read(data);
+    const parser = this.parser;
+    const streamReader = this.streamReader;
+    const rbuf = streamReader.read(data);
     // console.log(streamReader.nrow2r+' rows to read');
-    // let value;
+    // const value;
     if (streamReader.isFull()) {
-      let buf = data;
+      const buf = data;
       if (this.buflen !== 0)
         buf = Buffer.concat([this.buffer.slice(0, this.buflen), buf]);
       parser.isSmall = streamReader.isSmall;
-      let topic = streamReader.topic;
-      let res = parser.readPacket(
+      const topic = streamReader.topic;
+      const res = parser.readPacket(
         buf.slice(streamReader.pdata, streamReader.offset)
       );
       //console.log(topic);
@@ -108,7 +108,7 @@ class Daemon {
       if (streamReader.df === 6 && streamReader.nrow === 0) {
         // console.log("empty table");
       } else {
-        let topics = topic.split(",");
+        const topics = topic.split(",");
         for (const t of topics) this.channel.emit(t, res.value);
       }
       streamReader.init();
@@ -129,34 +129,34 @@ class Daemon {
   }
 
   // handle (id, data) {
-  //     let parser = this.parser;
-  //     let offset = 0;
-  //     let isSmall = data[0];
+  //     const parser = this.parser;
+  //     const offset = 0;
+  //     const isSmall = data[0];
   //     offset += 1;
   //     parser.isSmall = isSmall===1;
-  //     let _x = parser.bytes2DType(data.slice(offset,offset+8), 5);
+  //     const _x = parser.bytes2DType(data.slice(offset,offset+8), 5);
   //     console.log('_x:', _x);
   //     offset += 8;
-  //     let msgid = parser.bytes2DType(data.slice(offset,offset+8), 5);
+  //     const msgid = parser.bytes2DType(data.slice(offset,offset+8), 5);
   //     console.log('message id: '+msgid);
   //     offset += 8;
-  //     let topic = parser.bytes2DType(data.slice(offset), 18);
+  //     const topic = parser.bytes2DType(data.slice(offset), 18);
   //     offset += topic.length + 1;
   //     console.log(topic);
-  //     let dt=data[offset], df=data[offset+1];
-  //     let res = parser.readPacket(data.slice(offset));
-  //     let value = res.value;
+  //     const dt=data[offset], df=data[offset+1];
+  //     const res = parser.readPacket(data.slice(offset));
+  //     const value = res.value;
   //     offset += res._block_len;
   //     // res = null;
   //     if (df === 6 && value.data[0].length === 0){
   //         console.log('empty table');
   //     }
   //     else {
-  //         let topics = topic.split(',');
+  //         const topics = topic.split(',');
   //         for (const topic of topics)
   //             this.channel.emit(topic, value);
   //     }
-  //     let rest = data.slice(offset);
+  //     const rest = data.slice(offset);
   //     if (rest.length > 0)
   //         this.handle(id, rest);
   // }

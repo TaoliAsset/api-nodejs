@@ -9,7 +9,7 @@ class BasicTable extends BasicVector {
   constructor(value) {
     if (value == null) super(null);
     else {
-      let { tablename, colnames, types, data } = value;
+      const { tablename, colnames, types, data } = value;
       super(data);
       this.tablename = tablename;
       this.colnames = colnames;
@@ -18,22 +18,22 @@ class BasicTable extends BasicVector {
     this.dform = 6;
   }
   tobytes() {
-    let byteArray = new Array();
+    const byteArray = new Array();
     if (this.dt !== -1) {
-      let tbname = this.tablename;
-      let colnames = this.colnames;
-      let buf;
+      const tbname = this.tablename;
+      const colnames = this.colnames;
+      const buf;
       if (tbname == null) tbname = "";
       if (colnames == null || colnames.length === 0) {
-        let ncol = this.value.length;
+        const ncol = this.value.length;
         colnames = new Array(ncol);
-        for (let i = 0; i < ncol; i++) colnames[i] = "col" + i;
+        for (const i = 0; i < ncol; i++) colnames[i] = "col" + i;
       }
       byteArray.push(0, this.dform);
-      let ncol = this.value.length;
-      let nrow = this.value[0].length;
-      let nrowbuf = new BasicInt(nrow).tobytes();
-      let ncolbuf = new BasicInt(ncol).tobytes();
+      const ncol = this.value.length;
+      const nrow = this.value[0].length;
+      const nrowbuf = new BasicInt(nrow).tobytes();
+      const ncolbuf = new BasicInt(ncol).tobytes();
       for (const e of nrowbuf) byteArray.push(e);
       for (const e of ncolbuf) byteArray.push(e);
       buf = Util.str2Buf(tbname);
@@ -43,10 +43,10 @@ class BasicTable extends BasicVector {
         for (const e of buf) byteArray.push(e);
       }
       // buf = super.tobytes();
-      let data = this.value;
-      let types = this.types;
-      for (let i = 0; i < data.length; i++) {
-        let v = new BasicVector(data[i]);
+      const data = this.value;
+      const types = this.types;
+      for (const i = 0; i < data.length; i++) {
+        const v = new BasicVector(data[i]);
         if (types != null && types.length !== 0)
           v.dt = Util.dtypeByName(types[i]);
         buf = v.tobytes();

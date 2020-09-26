@@ -11,12 +11,12 @@ class BasicDict extends BasicVector {
     this.dform = 5;
   }
   tobytes() {
-    let dt = this.dt;
-    let byteArray = new Array();
+    const dt = this.dt;
+    const byteArray = new Array();
     if (dt !== -1) {
       byteArray.push(dt, this.dform);
-      let keybuf = new BasicVector(this.keys).tobytes();
-      let valuebuf = super.tobytes();
+      const keybuf = new BasicVector(this.keys).tobytes();
+      const valuebuf = super.tobytes();
       for (const e of keybuf) byteArray.push(e);
       for (const e of valuebuf) byteArray.push(e);
     } else {

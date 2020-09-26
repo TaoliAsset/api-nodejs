@@ -198,21 +198,21 @@ namespace Util {
   }
 
   export function str2Buf(str, isSmall = 1) {
-    let buf = Buffer.alloc(str.length + 1);
+    const buf = Buffer.alloc(str.length + 1);
     if (isSmall !== 1) str = str.split("").reverse().join("");
     buf.write(str);
     return buf;
   }
 
   export function numberLize(...args) {
-    let arr = new Array(args.length);
-    for (let i = 0; i < args.length; i++) arr[i] = Number(args[i]);
+    const arr = new Array(args.length);
+    for (const i = 0; i < args.length; i++) arr[i] = Number(args[i]);
     return arr;
   }
 
   export function ns2i(str) {
     const ns0 = "000000000";
-    let i;
+    const i;
     for (i = 0; i < str.length && str[i] === "0"; i++);
     str += ns0.substring(str.length);
     return str.substring(i);
@@ -226,19 +226,19 @@ namespace Util {
     const pdatetimens = /^(\d{4})\-(0\d|1[0-2]|\d)\-([0-2]\d|3[01]|\d) ([01]\d|2[0-3]|\d)\:([0-5]\d|\d)\:([0-5]\d|\d)\.(\d{1,9})/;
 
     if (pdate.test(timestr)) {
-      let [_, year, month, day] = pdate.exec(timestr);
+      const [_, year, month, day] = pdate.exec(timestr);
       [year, month, day] = numberLize(year, month, day);
       return { year: year, month: month, day: day };
     } else if (ptimes.test(timestr)) {
-      let [_, hour, minute, second] = ptimes.exec(timestr);
+      const [_, hour, minute, second] = ptimes.exec(timestr);
       [hour, minute, second] = numberLize(hour, minute, second);
       return { hour: hour, minute: minute, second: second };
     } else if (ptimens.test(timestr)) {
-      let [_, hour, minute, second, ns] = ptimens.exec(timestr);
+      const [_, hour, minute, second, ns] = ptimens.exec(timestr);
       [hour, minute, second, ns] = numberLize(hour, minute, second, ns2i(ns));
       return { hour: hour, minute: minute, second: second, nS: ns };
     } else if (pdatetimes.test(timestr)) {
-      let [_, year, month, day, hour, minute, second] = pdatetimes.exec(
+      const [_, year, month, day, hour, minute, second] = pdatetimes.exec(
         timestr
       );
       // console.log(year, month, day, hour, minute, second);
@@ -259,7 +259,7 @@ namespace Util {
         second: second,
       };
     } else if (pdatetimens.test(timestr)) {
-      let [_, year, month, day, hour, minute, second, ns] = pdatetimens.exec(
+      const [_, year, month, day, hour, minute, second, ns] = pdatetimens.exec(
         timestr
       );
       [year, month, day, hour, minute, second, ns] = numberLize(
@@ -286,14 +286,14 @@ namespace Util {
   }
 
   export function formatBytes(buf) {
-    let hexArray = new Array(buf.length);
-    for (let i = 0; i < buf.length; i++) {
-      let hc = buf[i].toString(16);
+    const hexArray = new Array(buf.length);
+    for (const i = 0; i < buf.length; i++) {
+      const hc = buf[i].toString(16);
       if (hc.length === 1) hc = "0" + hc;
       hexArray[i] = hc;
     }
-    let strArray = new Array(buf.length);
-    for (let i = 0; i < buf.length; i++) {
+    const strArray = new Array(buf.length);
+    for (const i = 0; i < buf.length; i++) {
       if (buf[i] === 0x0a) strArray[i] = "_n";
       else if (buf[i] === 32) strArray[i] = "__";
       else if (
@@ -312,14 +312,14 @@ namespace Util {
   }
 
   export function scalar2Buf(value, isSmall = true) {
-    let hdrBuf = value.hdrbytes();
-    let buf = value.small(isSmall).tobytes();
+    const hdrBuf = value.hdrbytes();
+    const buf = value.small(isSmall).tobytes();
     buf = Buffer.concat([hdrBuf, buf]);
     return buf;
   }
 
   export function allocBuf(slen, dlen, blockSize = 1024) {
-    let buf = Buffer.allocUnsafe(
+    const buf = Buffer.allocUnsafe(
       slen + Math.ceil((dlen - slen) / blockSize) * blockSize
     );
     buf.fill(0);

@@ -12,7 +12,7 @@ class BasicNanoTime extends TimeObj {
         this.value = value;
         this.timeObj = this.parseLong(value);
       } else if (typeof value === "string") {
-        let { hour, minute, second, nS } = Util.timeFromStr(value);
+        const { hour, minute, second, nS } = Util.timeFromStr(value);
         this.timeObj = {
           hour: hour,
           minute: minute,
@@ -30,15 +30,15 @@ class BasicNanoTime extends TimeObj {
   }
 
   parseLong(value) {
-    let hour, minute, second, nanoSecond;
+    const hour, minute, second, nanoSecond;
     const nsperhour = 3600000000000n;
     const nsperminute = 60000000000n;
     const nspersecond = 1000000000n;
-    let bighours = value / nsperhour;
+    const bighours = value / nsperhour;
     value -= bighours * nsperhour;
-    let bigminutes = value / nsperminute;
+    const bigminutes = value / nsperminute;
     value -= bigminutes * nsperminute;
-    let bigseconds = value / nspersecond;
+    const bigseconds = value / nspersecond;
     value -= bigseconds * nspersecond;
     hour = Number(bighours);
     minute = Number(bigminutes);
@@ -56,11 +56,11 @@ class BasicNanoTime extends TimeObj {
   }
 
   parseObj(nanoTimeObj) {
-    let { hour, minute, second, nanoSecond } = nanoTimeObj;
+    const { hour, minute, second, nanoSecond } = nanoTimeObj;
     const nsperhour = 3600000000000n;
     const nsperminute = 60000000000n;
     const nspersecond = 1000000000n;
-    let [bighour, bigminute, bigsecond, bignano] = [
+    const [bighour, bigminute, bigsecond, bignano] = [
       BigInt(hour),
       BigInt(minute),
       BigInt(second),
@@ -79,7 +79,7 @@ class BasicNanoTime extends TimeObj {
   }
 
   tobytes() {
-    let buf = Buffer.alloc(8);
+    const buf = Buffer.alloc(8);
     if (this.isSmall) buf.writeBigInt64LE(this.value);
     else buf.writeBigInt64BE(this.value);
     return buf;

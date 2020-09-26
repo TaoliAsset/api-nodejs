@@ -45,7 +45,7 @@ class BasicDate extends TimeObj {
         this.value = value;
         this.timeObj = this.parseInt(value);
       } else if (typeof value === "string") {
-        let { year, month, day } = Util.timeFromStr(value);
+        const { year, month, day } = Util.timeFromStr(value);
         this.timeObj = { year: year, month: month, day: day };
         this.value = this.parseObj(this.timeObj);
       } else if (typeof value === "object") {
@@ -58,21 +58,21 @@ class BasicDate extends TimeObj {
   }
 
   parseInt(days) {
-    let year, month, day;
+    const year, month, day;
     const daysof400years = 146097;
     days += 719529; // 719529: days of 0000-00-00 to 1970-01-01
-    let era = Math.floor(days / daysof400years); // 146097: days of 400 years
-    let offsetdays = days % daysof400years;
-    let erayears = era * 400;
-    let years = Math.floor(offsetdays / 365);
-    let tmpdays = years * 365;
+    const era = Math.floor(days / daysof400years); // 146097: days of 400 years
+    const offsetdays = days % daysof400years;
+    const erayears = era * 400;
+    const years = Math.floor(offsetdays / 365);
+    const tmpdays = years * 365;
     if (years > 0)
       tmpdays +=
         Math.floor((years - 1) / 4) + 1 - Math.floor((years - 1) / 100);
     if (tmpdays >= offsetdays) --years;
     year = years + erayears;
     days -= era * daysof400years + tmpdays;
-    let leap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    const leap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
     if (days <= 0) days += leap ? 366 : 365;
     month = Math.floor(days / 32) + 1;
     if (leap) {
@@ -93,12 +93,12 @@ class BasicDate extends TimeObj {
   }
 
   parseObj(dateObj) {
-    let { year, month, day } = dateObj;
-    let leap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-    let days;
+    const { year, month, day } = dateObj;
+    const leap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    const days;
     if (leap) days = cumLeapMonthDays[month - 1] + day - 1;
     else days = cumMothDays[month - 1] + day - 1;
-    let y, Y;
+    const y, Y;
     if (year < 1970) {
       y = year;
       Y = 1970;
@@ -106,7 +106,7 @@ class BasicDate extends TimeObj {
       y = 1970;
       Y = year;
     }
-    let tmpdays = 0;
+    const tmpdays = 0;
     for (; y < Y; y++) {
       leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
       tmpdays += leap ? 366 : 365;
@@ -122,7 +122,7 @@ class BasicDate extends TimeObj {
   }
 
   tobytes() {
-    let buf = Buffer.alloc(4);
+    const buf = Buffer.alloc(4);
     if (this.isSmall) buf.writeInt32LE(this.value);
     else buf.writeInt32BE(this.value);
     return buf;

@@ -4,8 +4,8 @@ import constants from "./constants";
 import BasicDate from "./BasicDate";
 import BasicTime from "./BasicTime";
 import TimeObj from "./TimeObj";
-let basicDate = new BasicDate(undefined);
-let basicTime = new BasicTime(undefined);
+const basicDate = new BasicDate(undefined);
+const basicTime = new BasicTime(undefined);
 
 class BasicDateTime extends TimeObj {
   constructor(value) {
@@ -16,7 +16,7 @@ class BasicDateTime extends TimeObj {
         this.value = value;
         this.timeObj = this.parseInt(value);
       } else if (typeof value === "string") {
-        let { year, month, day, hour, minute, second } = Util.timeFromStr(
+        const { year, month, day, hour, minute, second } = Util.timeFromStr(
           value
         );
         this.timeObj = {
@@ -38,11 +38,11 @@ class BasicDateTime extends TimeObj {
   }
 
   parseInt(value) {
-    let days = Math.floor(value / 86400);
-    let date = basicDate.parseInt(days);
-    let sec = value % 86400;
+    const days = Math.floor(value / 86400);
+    const date = basicDate.parseInt(days);
+    const sec = value % 86400;
     if (sec < 0) sec += 86400;
-    let time = basicTime.parseInt(sec * 1000);
+    const time = basicTime.parseInt(sec * 1000);
     return {
       year: date.year,
       month: date.month,
@@ -57,8 +57,8 @@ class BasicDateTime extends TimeObj {
   }
 
   parseObj(datetimeObj) {
-    let { year, month, day, hour, minute, second } = datetimeObj;
-    let days = basicDate.parseObj({ year: year, month: month, day: day });
+    const { year, month, day, hour, minute, second } = datetimeObj;
+    const days = basicDate.parseObj({ year: year, month: month, day: day });
     return days * 86400 + hour * 3600 + minute * 60 + second;
   }
 
@@ -67,7 +67,7 @@ class BasicDateTime extends TimeObj {
   }
 
   tobytes() {
-    let buf = Buffer.alloc(4);
+    const buf = Buffer.alloc(4);
     if (this.isSmall) buf.writeInt32LE(this.value);
     else buf.writeInt32BE(this.value);
     return buf;

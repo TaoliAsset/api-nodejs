@@ -10,10 +10,10 @@ class BasicSet extends BasicVector {
     this.dform = 4;
   }
   tobytes() {
-    let dt = this.dt;
+    const dt = this.dt;
     if (dt !== -1 && dt !== 1 && dt !== 25) {
-      let buf = super.tobytes();
-      let hdr = Buffer.from([this.dt, this.dform]);
+      const buf = super.tobytes();
+      const hdr = Buffer.from([this.dt, this.dform]);
       return Buffer.concat([hdr, buf], hdr.length + buf.length);
     } else if (dt === -1) {
       return super.tobytes();

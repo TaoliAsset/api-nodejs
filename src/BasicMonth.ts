@@ -12,7 +12,7 @@ class BasicMonth extends TimeObj {
         this.value = value;
         this.timeObj = this.parseInt(value);
       } else if (typeof value === "string") {
-        let { year, month } = Util.timeFromStr(value);
+        const { year, month } = Util.timeFromStr(value);
         this.timeObj = { year: year, month: month };
         this.value = this.parseObj(this.timeObj);
       } else if (typeof value === "object") {
@@ -25,8 +25,8 @@ class BasicMonth extends TimeObj {
   }
 
   parseInt(value) {
-    let year = Math.floor(value / 12);
-    let month = (value % 12) + 1;
+    const year = Math.floor(value / 12);
+    const month = (value % 12) + 1;
     return {
       year: year,
       month: month,
@@ -37,7 +37,7 @@ class BasicMonth extends TimeObj {
   }
 
   parseObj(monthObj) {
-    let { year, month } = monthObj;
+    const { year, month } = monthObj;
     return year * 12 + month - 1;
   }
 
@@ -46,7 +46,7 @@ class BasicMonth extends TimeObj {
   }
 
   tobytes() {
-    let buf = Buffer.alloc(4);
+    const buf = Buffer.alloc(4);
     if (this.isSmall) buf.writeInt32LE(this.value);
     else buf.writeInt32BE(this.value);
     return buf;

@@ -21,12 +21,12 @@ namespace tUtil {
   }
 
   export function scalar2BufR(value, options) {
-    let { isSmall = true, header = false, dt = -1 } = options;
-    let scalarObj = null;
+    const { isSmall = true, header = false, dt = -1 } = options;
+    const scalarObj = null;
     if (value instanceof BasicScalar) {
       scalarObj = value;
     } else {
-      let dtr;
+      const dtr;
       if (dt !== -1) dtr = dt;
       else dtr = tUtil.scalarTypeR(value);
       if (dtr === 0) {
@@ -45,7 +45,7 @@ namespace tUtil {
       }
     }
     if (scalarObj !== null) {
-      let buf = scalarObj.small(isSmall).tobytes();
+      const buf = scalarObj.small(isSmall).tobytes();
       if (header) buf = Buffer.concat([scalarObj.hdrbytes(), buf]);
       return buf;
     } else {

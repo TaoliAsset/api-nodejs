@@ -5,9 +5,9 @@ class BasicPair extends BasicVector {
     // a:b
     if (value == null) super(null);
     else {
-      let i = value.indexOf(":");
-      let a = Number(value.substring(0, i));
-      let b = Number(value.substring(i + 1));
+      const i = value.indexOf(":");
+      const a = Number(value.substring(0, i));
+      const b = Number(value.substring(i + 1));
       super([a, b]);
     }
     this.dform = 2;

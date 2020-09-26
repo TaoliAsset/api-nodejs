@@ -4,8 +4,8 @@ import constants from "./constants";
 import BasicDate from "./BasicDate";
 import BasicTime from "./BasicTime";
 import TimeObj from "./TimeObj";
-let basicDate = new BasicDate(null);
-let basicTime = new BasicTime(null);
+const basicDate = new BasicDate(null);
+const basicTime = new BasicTime(null);
 
 class BasicTimeStamp extends TimeObj {
   constructor(value) {
@@ -16,7 +16,7 @@ class BasicTimeStamp extends TimeObj {
         this.value = value;
         this.timeObj = this.parseLong(value);
       } else if (typeof value === "string") {
-        let { year, month, day, hour, minute, second, nS } = Util.timeFromStr(
+        const { year, month, day, hour, minute, second, nS } = Util.timeFromStr(
           value
         );
         this.timeObj = {
@@ -40,12 +40,12 @@ class BasicTimeStamp extends TimeObj {
   }
 
   parseLong(value) {
-    let days = Number(value / 86400000n);
+    const days = Number(value / 86400000n);
     if (value < 0n && value % 86400000n !== 0n) days -= 1;
-    let date = basicDate.parseInt(days);
-    let mss = Number(value % 86400000n);
+    const date = basicDate.parseInt(days);
+    const mss = Number(value % 86400000n);
     if (mss < 0) mss += 86400000;
-    let time = basicTime.parseInt(mss);
+    const time = basicTime.parseInt(mss);
     return {
       date: date,
       time: time,
@@ -53,9 +53,9 @@ class BasicTimeStamp extends TimeObj {
   }
 
   parseObj(timeStampObj) {
-    let { date, time } = timeStampObj;
-    let days = basicDate.parseObj(date);
-    let ms = basicTime.parseObj(time);
+    const { date, time } = timeStampObj;
+    const days = basicDate.parseObj(date);
+    const ms = basicTime.parseObj(time);
     return BigInt(days) * 86400000n + BigInt(ms);
   }
 
@@ -64,7 +64,7 @@ class BasicTimeStamp extends TimeObj {
   }
 
   tobytes() {
-    let buf = Buffer.alloc(8);
+    const buf = Buffer.alloc(8);
     if (this.isSmall) buf.writeBigInt64LE(this.value);
     else buf.writeBigInt64BE(this.value);
     return buf;

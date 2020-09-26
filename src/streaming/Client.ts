@@ -22,25 +22,29 @@ class Client {
     actionName: string,
     options
   ) {
-    let {
+    const {
       offset = -1,
       handler = null,
       filter = null,
       allowExistTopic = false,
     } = options;
-    let conn = new DBconnection();
+    const conn = new DBconnection();
     if (host === "") host = "127.0.0.1";
     await conn.connect(host, port);
-    let res = await conn.runFunc("getSubscriptionTopic", tableName, actionName);
-    let topic = res[0];
+    const res = await conn.runFunc(
+      "getSubscriptionTopic",
+      tableName,
+      actionName
+    );
+    const topic = res[0];
     if (infolevel >= 1) console.log(topic);
 
     // this.channel.subscriptions[topic] = handler;
 
     if (filter === null) filter = new BasicNull(-1);
     offset = new BasicLong(offset);
-    let lport = new BasicInt(this.lport);
-    let lhost = this.lhost;
+    const lport = new BasicInt(this.lport);
+    const lhost = this.lhost;
     if (lhost == null || lhost === "") lhost = conn.socket.stream.localAddress;
     allowExistTopic = new BasicBool(allowExistTopic);
     res = await conn.runFunc(
@@ -71,10 +75,10 @@ class Client {
   }
 
   async unsubscribe(host: string, port: number, tableName: string, actionName) {
-    let conn = new DBconnection();
+    const conn = new DBconnection();
     await conn.connect(host, port);
-    let lport = new BasicInt(this.lport);
-    let lhost = this.lhost;
+    const lport = new BasicInt(this.lport);
+    const lhost = this.lhost;
     if (lhost == null || lhost === "") lhost = conn.socket.stream.localAddress;
     // console.log(lhost);
     await conn.runFunc("stopPublishTable", lhost, lport, tableName, actionName);

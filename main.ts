@@ -15,8 +15,8 @@ function assertArrayEquals(expected, value) {
   if (!(expected instanceof Array)) {
     return expected === value;
   } else {
-    // let check;
-    for (let i = 0; i < expected.length; i++) {
+    // const check;
+    for (const i = 0; i < expected.length; i++) {
       if (!assertArrayEquals(expected[i], value[i])) {
         console.log(
           `check failed (expected: ${expected[i]}, get: ${value[i]})\n`
@@ -39,12 +39,12 @@ function handleMsg(data) {
 }
 
 async function main() {
-  let DBconnection = require("./src/DBconnection"); //import API module
-  let myConnect = new DBconnection(); //create connection object
+  const DBconnection = require("./src/DBconnection"); //import API module
+  const myConnect = new DBconnection(); //create connection object
   await myConnect.connect("localhost", 8848); //set up connection
   const test = true;
   const debug = !test;
-  let result;
+  const result;
   if (test) {
     //scalar
     console.log("scalar");
@@ -289,7 +289,7 @@ async function main() {
     // result = await myConnect.run("(1,'AA', 2.5)");
     // result = new BasicDateTime("1958-06-13 13:30:10");
     // result = await myConnect.run("table(1:0,`id`val,[INT,INT])");
-    // let script = 'login("admin", "123456") \n'+
+    // const script = 'login("admin", "123456") \n'+
     // 'dbName="dfs://db_testRun" \n' +
     // 'if(existsDatabase(dbName)){ \n'+
     // '   dropDatabase(dbName) \n'+
