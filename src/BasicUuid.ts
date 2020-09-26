@@ -1,6 +1,7 @@
 import BasicInt128 from "./BasicInt128";
 
 class BasicUuid extends BasicInt128 {
+  uuid: string;
   constructor(value) {
     if (typeof value === "string") value = value.replace(/\-/g, "");
     super(value);
