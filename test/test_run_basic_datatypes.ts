@@ -1,5 +1,3 @@
-"use strict";
-
 const { UUID } = require("../src/DT");
 
 async function test_run() {

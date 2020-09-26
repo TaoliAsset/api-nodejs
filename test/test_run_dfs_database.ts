@@ -1,5 +1,3 @@
-"use strict";
-
 async function test_run_dfs() {
   let assert = require("assert");
   let DBconnection = require("../src/DBconnection"); //import API module

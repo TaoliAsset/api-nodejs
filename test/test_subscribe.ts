@@ -1,5 +1,3 @@
-"use strict";
-
 async function test_subscribe() {
   let assert = require("assert");
   let DBconnection = require("../src/DBconnection"); //import API module

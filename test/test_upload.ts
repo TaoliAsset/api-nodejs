@@ -1,5 +1,3 @@
-"use strict";
-
 const { Double, Int, Short, Float, Minute } = require("../src/DT");
 const { Console } = require("console");
 
