@@ -1,6 +1,7 @@
 import BasicInt128 from "./BasicInt128";
 
 class BasicIpAddr extends BasicInt128 {
+  ipaddr: string;
   constructor(value) {
     if (typeof value === "string") {
       const re = /^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$/;
