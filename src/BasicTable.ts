@@ -3,6 +3,9 @@ import BasicInt from "./BasicInt";
 import Util from "./util";
 
 class BasicTable extends BasicVector {
+  tablename;
+  colnames;
+  types;
   constructor(value) {
     if (value == null) super(null);
     else {
