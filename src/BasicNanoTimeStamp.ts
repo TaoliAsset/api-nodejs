@@ -5,8 +5,8 @@ import BasicDate from "./BasicDate";
 import BasicNanoTime from "./BasicNanoTime";
 import TimeObj from "./TimeObj";
 
-let basicDate = new BasicDate();
-let basicNanoTime = new BasicNanoTime();
+let basicDate = new BasicDate(null);
+let basicNanoTime = new BasicNanoTime(null);
 
 class BasicNanoTimeStamp extends TimeObj {
   constructor(value) {
