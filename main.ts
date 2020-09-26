@@ -16,7 +16,7 @@ function assertArrayEquals(expected, value) {
     return expected === value;
   } else {
     // const check;
-    for (const i = 0; i < expected.length; i++) {
+    for (let i = 0; i < expected.length; i++) {
       if (!assertArrayEquals(expected[i], value[i])) {
         console.log(
           `check failed (expected: ${expected[i]}, get: ${value[i]})\n`
@@ -44,7 +44,7 @@ async function main() {
   await myConnect.connect("localhost", 8848); //set up connection
   const test = true;
   const debug = !test;
-  const result;
+  let result;
   if (test) {
     //scalar
     console.log("scalar");
