@@ -4,6 +4,8 @@ import BasicVector from "./BasicVector";
 import BasicInt from "./BasicInt";
 
 class BasicMat extends BasicVector {
+  rownames;
+  colnames;
   constructor(value) {
     if (value == null) super(null);
     else {
