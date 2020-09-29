@@ -22,7 +22,7 @@ class Client {
     actionName: string,
     options
   ) {
-    const {
+    let {
       offset = -1,
       handler = null,
       filter = null,
@@ -31,11 +31,7 @@ class Client {
     const conn = new DBconnection();
     if (host === "") host = "127.0.0.1";
     await conn.connect(host, port);
-    const res = await conn.runFunc(
-      "getSubscriptionTopic",
-      tableName,
-      actionName
-    );
+    let res = await conn.runFunc("getSubscriptionTopic", tableName, actionName);
     const topic = res[0];
     if (infolevel >= 1) console.log(topic);
 
@@ -44,7 +40,7 @@ class Client {
     if (filter === null) filter = new BasicNull(-1);
     offset = new BasicLong(offset);
     const lport = new BasicInt(this.lport);
-    const lhost = this.lhost;
+    let lhost = this.lhost;
     if (lhost == null || lhost === "") lhost = conn.socket.stream.localAddress;
     allowExistTopic = new BasicBool(allowExistTopic);
     res = await conn.runFunc(
@@ -78,7 +74,7 @@ class Client {
     const conn = new DBconnection();
     await conn.connect(host, port);
     const lport = new BasicInt(this.lport);
-    const lhost = this.lhost;
+    let lhost = this.lhost;
     if (lhost == null || lhost === "") lhost = conn.socket.stream.localAddress;
     // console.log(lhost);
     await conn.runFunc("stopPublishTable", lhost, lport, tableName, actionName);
